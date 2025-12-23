@@ -23,7 +23,7 @@ export const topicsApi = {
         if (filters?.search) params.append('search', filters.search);
 
         const queryString = params.toString();
-        const url = `/topics${queryString ? `?${queryString}` : ''}`;
+        const url = `topics${queryString ? `?${queryString}` : ''}`;
 
         const response = await xanoClient.get<any[]>(url);
         return response.map(transformTopicFromXano);
@@ -33,7 +33,7 @@ export const topicsApi = {
      * Get topic by ID
      */
     async getById(id: string): Promise<Topic> {
-        const response = await xanoClient.get<any>(`/topics/${id}`);
+        const response = await xanoClient.get<any>(`topics/${id}`);
         return transformTopicFromXano(response);
     },
 
@@ -41,7 +41,7 @@ export const topicsApi = {
      * Get topics by category
      */
     async getByCategory(category: string): Promise<Topic[]> {
-        const response = await xanoClient.get<any[]>(`/topics?category=${category}`);
+        const response = await xanoClient.get<any[]>(`topics?category=${category}`);
         return response.map(transformTopicFromXano);
     },
 
@@ -49,7 +49,7 @@ export const topicsApi = {
      * Create new topic (Admin only)
      */
     async create(topic: Omit<Topic, 'id' | 'createdAt' | 'updatedAt'>): Promise<Topic> {
-        const response = await xanoClient.post<any>('/topics', {
+        const response = await xanoClient.post<any>('topics', {
             title: topic.title,
             category: topic.category,
             sub_category: topic.subCategory,
@@ -67,7 +67,7 @@ export const topicsApi = {
      * Update topic (Admin only)
      */
     async update(id: string, updates: Partial<Topic>): Promise<Topic> {
-        const response = await xanoClient.patch<any>(`/topics/${id}`, {
+        const response = await xanoClient.patch<any>(`topics/${id}`, {
             title: updates.title,
             category: updates.category,
             sub_category: updates.subCategory,
@@ -85,7 +85,7 @@ export const topicsApi = {
      * Delete topic (Admin only)
      */
     async delete(id: string): Promise<void> {
-        await xanoClient.delete(`/topics/${id}`);
+        await xanoClient.delete(`topics/${id}`);
     },
 
     /**
@@ -97,7 +97,7 @@ export const topicsApi = {
             // Assuming endpoint name is /topics/{id}/generate-ai or /generate_ai_content
             // Let's stick to a RESTful convention if possible, but Xano custom endpoints are flexible.
             // Based on the guide, use: POST /generate_ai_content
-            const response = await xanoClient.post<any>('/generate_ai_content', { topic_id: id });
+            const response = await xanoClient.post<any>('generate_ai_content', { topic_id: id });
             return transformTopicFromXano(response);
         } catch (error) {
             console.error('AI generation failed:', error);
@@ -113,7 +113,7 @@ export const commentsApi = {
      * Get comments for a topic
      */
     async getByTopicId(topicId: string): Promise<Comment[]> {
-        const response = await xanoClient.get<any[]>(`/comments?topic_id=${topicId}`);
+        const response = await xanoClient.get<any[]>(`comments?topic_id=${topicId}`);
         return response.map(transformCommentFromXano);
     },
 
@@ -121,7 +121,7 @@ export const commentsApi = {
      * Create new comment
      */
     async create(topicId: string, text: string): Promise<Comment> {
-        const response = await xanoClient.post<any>('/comments', {
+        const response = await xanoClient.post<any>('comments', {
             topic_id: topicId,
             text,
         });
@@ -133,7 +133,7 @@ export const commentsApi = {
      */
     async toggleLike(commentId: string): Promise<Comment> {
         try {
-            const response = await xanoClient.patch<any>(`/comments/${commentId}/like`);
+            const response = await xanoClient.patch<any>(`comments/${commentId}/like`);
             return transformCommentFromXano(response);
         } catch (error) {
             console.warn('Failed to toggle like (API likely missing), returning mock update:', error);
@@ -156,7 +156,7 @@ export const commentsApi = {
      * Delete comment (Moderator/Admin or owner)
      */
     async delete(commentId: string): Promise<void> {
-        await xanoClient.delete(`/comments/${commentId}`);
+        await xanoClient.delete(`comments/${commentId}`);
     },
 
     /**
@@ -164,7 +164,7 @@ export const commentsApi = {
      */
     async toggleLock(commentId: string): Promise<Comment> {
         try {
-            const response = await xanoClient.patch<any>(`/comments/${commentId}/lock`);
+            const response = await xanoClient.patch<any>(`comments/${commentId}/lock`);
             return transformCommentFromXano(response);
         } catch (error) {
             console.warn('Failed to toggle lock (API likely missing):', error);
@@ -192,7 +192,7 @@ export const studyPlansApi = {
      */
     getUserPlans: async (): Promise<StudyPlan[]> => {
         try {
-            const response = await xanoClient.get<any[]>('/study_plans');
+            const response = await xanoClient.get<any[]>('study_plans');
             return response.map(transformStudyPlanFromXano);
         } catch (error) {
             console.warn('Failed to fetch study plans (likely 404), defaulting to empty');
@@ -204,7 +204,7 @@ export const studyPlansApi = {
      * Get study plan by ID
      */
     async getById(id: string): Promise<StudyPlan> {
-        const response = await xanoClient.get<any>(`/study-plans/${id}`);
+        const response = await xanoClient.get<any>(`study-plans/${id}`);
         return transformStudyPlanFromXano(response);
     },
 
@@ -217,7 +217,7 @@ export const studyPlansApi = {
         dailyTimeMinutes: number;
         weakTopics: string[];
     }): Promise<StudyPlan> {
-        const response = await xanoClient.post<any>('/study-plans', {
+        const response = await xanoClient.post<any>('study-plans', {
             exam_type: plan.examType,
             target_score: plan.targetScore,
             daily_time_minutes: plan.dailyTimeMinutes,
@@ -230,7 +230,7 @@ export const studyPlansApi = {
      * Update study plan
      */
     async update(id: string, updates: Partial<StudyPlan>): Promise<StudyPlan> {
-        const response = await xanoClient.patch<any>(`/study-plans/${id}`, {
+        const response = await xanoClient.patch<any>(`study-plans/${id}`, {
             exam_type: updates.examType,
             target_score: updates.targetScore,
             daily_time_minutes: updates.dailyTimeMinutes,
@@ -244,7 +244,7 @@ export const studyPlansApi = {
      * Delete study plan
      */
     async delete(id: string): Promise<void> {
-        await xanoClient.delete(`/study-plans/${id}`);
+        await xanoClient.delete(`study-plans/${id}`);
     },
 };
 
@@ -255,7 +255,7 @@ export const adminApi = {
      * Get all users (Admin only)
      */
     async getUsers(): Promise<User[]> {
-        const response = await xanoClient.get<any[]>('/admin/users');
+        const response = await xanoClient.get<any[]>('admin/users');
         return response.map(transformUserFromXano);
     },
 
@@ -263,7 +263,7 @@ export const adminApi = {
      * Update user role (Admin only)
      */
     async updateUserRole(userId: string, role: 'admin' | 'moderator' | 'user'): Promise<User> {
-        const response = await xanoClient.patch<any>(`/admin/users/${userId}/role`, { role });
+        const response = await xanoClient.patch<any>(`admin/users/${userId}/role`, { role });
         return transformUserFromXano(response);
     },
 
@@ -276,14 +276,14 @@ export const adminApi = {
         totalComments: number;
         totalStudyPlans: number;
     }> {
-        return await xanoClient.get('/admin/stats');
+        return await xanoClient.get('admin/stats');
     },
 
     /**
      * Get recent comments for moderation (Moderator/Admin)
      */
     async getRecentComments(limit: number = 20): Promise<Comment[]> {
-        const response = await xanoClient.get<any[]>(`/admin/comments?limit=${limit}`);
+        const response = await xanoClient.get<any[]>(`admin/comments?limit=${limit}`);
         return response.map(transformCommentFromXano);
     },
 };
@@ -296,7 +296,7 @@ export const favoritesApi = {
      */
     async getFavorites(): Promise<Topic[]> {
         try {
-            const response = await xanoClient.get<any[]>('/favorites');
+            const response = await xanoClient.get<any[]>('favorites');
             return response.map(transformTopicFromXano);
         } catch (error) {
             console.warn('Failed to fetch favorites (likely 404), defaulting to empty');
@@ -309,7 +309,7 @@ export const favoritesApi = {
      */
     async add(topicId: string): Promise<void> {
         try {
-            await xanoClient.post('/favorites', { topic_id: topicId });
+            await xanoClient.post('favorites', { topic_id: topicId });
         } catch (error) {
             console.warn('Failed to add favorite (API likely missing):', error);
         }
@@ -320,7 +320,7 @@ export const favoritesApi = {
      */
     async remove(topicId: string): Promise<void> {
         try {
-            await xanoClient.delete(`/favorites/${topicId}`);
+            await xanoClient.delete(`favorites/${topicId}`);
         } catch (error) {
             console.warn('Failed to remove favorite (API likely missing):', error);
         }
@@ -331,7 +331,7 @@ export const favoritesApi = {
      */
     async isFavorited(topicId: string): Promise<boolean> {
         try {
-            const response = await xanoClient.get<{ is_favorited: boolean }>(`/favorites/check/${topicId}`);
+            const response = await xanoClient.get<{ is_favorited: boolean }>(`favorites/check/${topicId}`);
             return response.is_favorited;
         } catch {
             return false;
@@ -347,7 +347,7 @@ export const progressApi = {
      */
     async toggleCompleted(topicId: string, isCompleted: boolean): Promise<void> {
         try {
-            await xanoClient.post('/progress/toggle', {
+            await xanoClient.post('progress/toggle', {
                 topic_id: topicId,
                 status: isCompleted ? 'completed' : 'pending'
             });
@@ -367,7 +367,7 @@ export const progressApi = {
         averageScore: number;
     }> {
         try {
-            return await xanoClient.get('/user/study-stats');
+            return await xanoClient.get('user/study-stats');
         } catch (error) {
             console.warn('Failed to fetch study stats, returning mock:', error);
             return {

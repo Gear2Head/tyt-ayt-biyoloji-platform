@@ -26,7 +26,7 @@ export const bugApi = {
         }
 
         try {
-            await xanoClient.post('/ai/bug-report', {
+            await xanoClient.post('ai/bug-report', {
                 message: error.message,
                 stack_trace: error.stack,
                 component_stack: info?.componentStack || '',
@@ -43,7 +43,7 @@ export const bugApi = {
      * Get all bug reports (Admin only)
      */
     async getAll(): Promise<BugReport[]> {
-        const response = await xanoClient.get<any[]>('/ai/bug-reports');
+        const response = await xanoClient.get<any[]>('ai/bug-reports');
         return response.map(item => ({
             id: item.id,
             message: item.message,
@@ -60,6 +60,6 @@ export const bugApi = {
      * Resolve a bug report
      */
     async resolve(id: string) {
-        await xanoClient.patch(`/ai/bug-reports/${id}`, { status: 'resolved' });
+        await xanoClient.patch(`ai/bug-reports/${id}`, { status: 'resolved' });
     }
 };

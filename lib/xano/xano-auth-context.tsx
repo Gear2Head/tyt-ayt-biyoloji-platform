@@ -47,7 +47,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         try {
-            const response = await xanoClient.get<XanoAuthResponse['user']>('/auth/me');
+            const response = await xanoClient.get<XanoAuthResponse['user']>('auth/me');
 
             // Transform Xano response to our User type
             const userData: User = {
@@ -77,7 +77,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
 
     const signIn = async (email: string, password: string) => {
         try {
-            const response = await xanoClient.post<XanoAuthResponse>('/auth/login', {
+            const response = await xanoClient.post<XanoAuthResponse>('auth/login', {
                 email,
                 password,
             });
@@ -98,7 +98,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
 
     const signUp = async (email: string, password: string, displayName: string) => {
         try {
-            const response = await xanoClient.post<XanoAuthResponse>('/auth/signup', {
+            const response = await xanoClient.post<XanoAuthResponse>('auth/signup', {
                 email,
                 password,
                 name: displayName,
@@ -123,7 +123,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
     const signOut = async () => {
         try {
             // Call logout endpoint (optional, depends on Xano setup)
-            await xanoClient.post('/auth/logout');
+            await xanoClient.post('auth/logout');
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
@@ -134,7 +134,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
 
     const resetPassword = async (email: string) => {
         try {
-            await xanoClient.post('/auth/reset-password', { email });
+            await xanoClient.post('auth/reset-password', { email });
         } catch (error: any) {
             console.error('Password reset error:', error);
             throw new Error(error.response?.data?.message || 'Şifre sıfırlama başarısız');
