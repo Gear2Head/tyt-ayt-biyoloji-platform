@@ -1,3 +1,5 @@
+'use client';
+
 import { BugReport } from '@/lib/bug-logger';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

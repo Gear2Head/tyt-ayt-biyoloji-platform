@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/xano/xano-auth-context';
 import { useRouter } from 'next/navigation';
@@ -10,7 +12,6 @@ import { ShieldCheck, ArrowLeft } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import { users as sampleUsers } from '@/lib/types'; // Assuming this fallback or we fetch users
 
 export default function AdminPage() {
     const { user, isAdmin } = useAuth();

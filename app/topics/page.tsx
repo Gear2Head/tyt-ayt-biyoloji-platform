@@ -11,8 +11,9 @@ import { Search, BookOpen, GraduationCap, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-export default function TopicsPage() {
+function TopicsPageContent() {
     const { user } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -191,5 +192,17 @@ export default function TopicsPage() {
                 )}
             </main>
         </div>
+    );
+}
+
+export default function TopicsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        }>
+            <TopicsPageContent />
+        </Suspense>
     );
 }

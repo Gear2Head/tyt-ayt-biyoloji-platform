@@ -15,6 +15,7 @@ interface XanoAuthResponse {
         created_at: string;
         last_login_at: string;
         favorites: string[];
+        completed_topics?: string[];
     };
 }
 
@@ -57,6 +58,7 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
                 createdAt: new Date(response.created_at),
                 lastLoginAt: new Date(response.last_login_at),
                 favorites: response.favorites || [],
+                completedTopics: response.completed_topics || [],
             };
 
             setUser(userData);

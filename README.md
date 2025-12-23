@@ -122,14 +122,7 @@ tyt-ayt-biyoloji-platform/
 └── public/
 ```
 
-## 🔒 Gizli Admin Konsol Erişimi
 
-### Nasıl Çalışır?
-
-1. **Admin Email ile Giriş**: `senerkadiralper@gmail.com`
-2. **Dashboard'da Konsol Görünür**: Sadece admin için
-3. **Gizli Kodu Girin**: `GearAdmin9150`
-4. **Konsol Açılır**: Yönetim paneline erişim
 
 ### Güvenlik Özellikleri
 - ❌ Normal kullanıcılar göremez
@@ -240,11 +233,3 @@ Bu proje özel bir eğitim projesi olarak geliştirilmiştir.
 
 Bir sorun mu buldunuz? [Issues](https://github.com/your-repo/issues) sayfasından bildirebilirsiniz.
 
-## 📧 İletişim
-
-**Proje Sahibi**: Kadir Alper Sener  
-**Email**: senerkadiralper@gmail.com
-
----
-
-**Made with ❤️ and ☕ for TYT-AYT Students**

@@ -29,8 +29,8 @@ export const bugApi = {
             await xanoClient.post('/ai/bug-report', {
                 message: error.message,
                 stack_trace: error.stack,
-                component_stack: info?.componentStack,
-                path: window.location.pathname,
+                component_stack: info?.componentStack || '',
+                path: typeof window !== 'undefined' ? window.location.pathname : '',
                 timestamp: new Date().toISOString(),
             });
         } catch (apiError) {
