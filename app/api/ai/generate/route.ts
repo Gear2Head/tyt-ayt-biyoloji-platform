@@ -2,16 +2,24 @@ import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import axios from 'axios';
 
-// Initialize OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
 // Xano Configuration
 const XANO_BASE_URL = process.env.NEXT_PUBLIC_XANO_BASE_URL;
 
 export async function POST(request: Request) {
     try {
+        // 0. Initialize OpenAI lazily
+        if (!process.env.OPENAI_API_KEY) {
+            console.error('Missing OPENAI_API_KEY environment variable');
+            return NextResponse.json(
+                { error: 'AI service is currently unavailable. (Missing API Key in Vercel settings)' },
+                { status: 500 }
+            );
+        }
+
+        const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY,
+        });
+
         // 1. Check Authentication (Verify Xano Token)
         const authHeader = request.headers.get('Authorization');
         if (!authHeader) {
