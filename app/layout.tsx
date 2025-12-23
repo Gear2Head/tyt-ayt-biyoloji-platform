@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { XanoAuthProvider } from "@/lib/xano/xano-auth-context";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "TYT-AYT Biyoloji | Profesyonel Eğitim Platformu",
@@ -18,6 +19,7 @@ export default function RootLayout({
         <XanoAuthProvider>
           {children}
         </XanoAuthProvider>
+        <Analytics />
       </body>
     </html>
   );
