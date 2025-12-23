@@ -1,0 +1,5 @@
+uid,email,password,display_name,role,created_at,last_login_at,favorites
+550e8400-e29b-41d4-a716-446655440000,senerkadiralper@gmail.com,Admin123!,Kadir Alper Sener,admin,2025-01-01 10:00:00,2025-01-01 10:00:00,[]
+550e8400-e29b-41d4-a716-446655440001,test@example.com,Test123!,Test User,user,2025-01-01 11:00:00,2025-01-01 11:00:00,"[1,2,3]"
+550e8400-e29b-41d4-a716-446655440002,ogrenci1@example.com,Ogrenci123,Ahmet Yılmaz,user,2025-01-02 09:00:00,2025-01-02 09:00:00,[]
+550e8400-e29b-41d4-a716-446655440003,ogrenci2@example.com,Ogrenci456,Ayşe Demir,user,2025-01-02 10:00:00,2025-01-02 10:00:00,"[2,4,5]"

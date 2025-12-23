@@ -1,36 +1,250 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 TYT-AYT Biyoloji Eğitim Platformu
 
-## Getting Started
+**Profesyonel, AI Destekli, Rol Bazlı Eğitim Platformu**
 
-First, run the development server:
+Modern, güvenli ve ölçeklenebilir bir TYT-AYT biyoloji eğitim platformu. MEB müfredatına %100 uyumlu yapı ile AI destekli kişisel çalışma planları sunar.
 
+## ✨ Özellikler
+
+### 🔐 Güvenlik ve Yetkilendirme
+- **Rol Bazlı Erişim**: Admin / Moderatör / Üye rolleri
+- **Gizli Admin Konsolu**: Email + gizli kod ile erişim
+- **Firebase Authentication**: Güvenli kullanıcı yönetimi
+- **Session Management**: Oturum persistans sistemi
+- **Lockout Mechanism**: 5 yanlış denemede 10 dakika kilit
+
+### 🎨 Premium UI/UX
+- **Modern Design System**: Vibrant renkler, glassmorphism efektleri
+- **Responsive**: Tüm cihazlarda kusursuz deneyim
+- **Animasyonlar**: Framer Motion ile akıcı geçişler
+- **Dark Mode Ready**: Hazır dark tema desteğ
+
+i
+- **Google Fonts**: Inter & Outfit premium fontları
+
+### 👤 Kullanıcı Rolleri
+
+#### 🛡️ Admin (Tek Hesap - Sabit)
+**Email**: `senerkadiralper@gmail.com`
+**Konsol Kodu**: `GearAdmin9150`
+
+- Tüm sistemi yönetir
+- Moderatör atar/kaldırır
+- İçerik düzenler
+- Yorumları yönetir
+- AI içerik üretimini tetikler
+
+#### 🧑‍⚖️ Moderatör
+- Yorumları siler/düzenler/kilitler
+- Spam yönetimi
+- İçerik moderasyonu
+
+#### 👥 Üye
+- Yorum yapabilir
+- Favori ekler
+- Çalışma planı oluşturur
+
+## 🚀 Kurulum
+
+### Gereksinimler
+- Node.js 18+ ve npm
+- Xano.io hesabı (ücretsiz)
+- Gemini API key (AI özellikler için - opsiyonel)
+
+### Adımlar
+
+1. **Depoyu Klonlayın**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd tyt-ayt-biyoloji-platform
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Bağımlılıkları Kurun**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Xano.io Backend Kurulumu**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**ÖNEMLI:** Backend kurulumu için `XANO_SETUP.md` dosyasını okuyun!
 
-## Learn More
+Özet:
+- Xano.io workspace'inizde database tablolarını oluşturun
+- API endpoint'lerini yapılandırın
+- API base URL'inizi alın
 
-To learn more about Next.js, take a look at the following resources:
+4. **Environment Variables Ayarlayın**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`.env.local` dosyası oluşturun:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+# Xano Configuration
+NEXT_PUBLIC_XANO_BASE_URL=https://x8ki-letl-twmt.n7.xano.io/api:YOUR_WORKSPACE_ID
 
-## Deploy on Vercel
+# Admin Configuration
+NEXT_PUBLIC_ADMIN_EMAIL=senerkadiralper@gmail.com
+NEXT_PUBLIC_ADMIN_CONSOLE_CODE=GearAdmin9150
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Gemini AI API Key (Optional)
+GEMINI_API_KEY=your_gemini_api_key_here
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Geliştirme Sunucusunu Başlatın**
+```bash
+npm run dev
+```
+
+Tarayıcınızda `http://localhost:3000` adresine gidin.
+
+## 📁 Proje Yapısı
+
+```
+tyt-ayt-biyoloji-platform/
+├── app/
+│   ├── (auth)/
+│   │   ├── login/          # Giriş sayfası
+│   │   └── register/        # Kayıt sayfası
+│   ├── dashboard/           # Kullanıcı dashboard'u
+│   ├── profile/             # Profil sayfası
+│   ├── layout.tsx           # Root layout + AuthProvider
+│   └── page.tsx             # Landing page
+├── components/
+│   ├── ui/                  # Shadcn UI components
+│   ├── admin/               # Admin konsolu
+│   │   └── admin-console-unlock.tsx
+│   └── auth/                # Auth components
+│       └── role-guard.tsx
+├── lib/
+│   ├── firebase/
+│   │   ├── config.ts        # Firebase init
+│   │   └── auth-context.tsx # Auth provider
+│   └── types.ts             # TypeScript types
+└── public/
+```
+
+## 🔒 Gizli Admin Konsol Erişimi
+
+### Nasıl Çalışır?
+
+1. **Admin Email ile Giriş**: `senerkadiralper@gmail.com`
+2. **Dashboard'da Konsol Görünür**: Sadece admin için
+3. **Gizli Kodu Girin**: `GearAdmin9150`
+4. **Konsol Açılır**: Yönetim paneline erişim
+
+### Güvenlik Özellikleri
+- ❌ Normal kullanıcılar göremez
+- ❌ URL ile erişilemez
+- ✅ Session bazlı kilitleme
+- ✅ 5 yanlış deneme = 10 dk kilit
+- ✅ Tüm denemeler loglanır
+
+## 🧪 Test Hesapları
+
+### Admin
+- **Email**: `senerkadiralper@gmail.com`
+- **Konsol Kodu**: `GearAdmin9150`
+
+### Üye
+Kayıt sayfasından istediğiniz email ile kayıt oluşturabilirsiniz.
+
+## 🛠️ Teknoloji Stack'i
+
+### Frontend
+- **Next.js 14** - React framework (App Router)
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Shadcn/ui** - UI components
+- **Framer Motion** - Animasyonlar
+- **Lucide React** - İkonlar
+
+### Backend
+- **Xano.io** - No-code backend platform
+- **REST API** - RESTful endpoints
+- **JWT Authentication** - Secure token-based auth
+- **PostgreSQL** - Database (managed by Xano)
+- **Xano Functions** - Backend logic
+
+### AI & Integration
+- **Google Gemini API** - AI özellikleri
+- **Zustand** - State management (opsiyonel)
+
+## 📝 Geliştirme Durumu
+
+### ✅ Tamamlanan
+- [x] Proje yapısı ve kurulum
+- [x] Firebase entegrasyonu
+- [x] Authentication sistemi
+- [x] Rol bazlı erişim kontrolü
+- [x] Gizli admin konsolu
+- [x] Premium UI design system
+- [x] Landing page
+- [x] Login/Register sayfaları
+- [x] Dashboard
+- [x] Profil sayfası
+
+### 🚧 Devam Eden / Planlanan
+- [ ] MEB TYT-AYT müfredat içeriği
+- [ ] Konu detay sayfaları
+- [ ] AI konu özetleri
+- [ ] Kişisel çalışma planı
+- [ ] Yorum sistemi
+- [ ] Moderatör paneli
+- [ ] Admin yönetim paneli
+- [ ] Firestore security rules
+- [ ] Firebase Functions deployment
+
+## 🔥 Firebase Deployment
+
+```bash
+# Firebase CLI kurulumu
+npm install -g firebase-tools
+
+# Login
+firebase login
+
+# Init
+firebase init
+
+# Deploy
+firebase deploy
+```
+
+## 📚 Dokümantasyon
+
+Detaylı dokümantasyon için `implementation_plan.md` dosyasına bakın.
+
+## 🤝 Katkıda Bulunma
+
+1. Fork edin
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit edin (`git commit -m 'feat: Add amazing feature'`)
+4. Push edin (`git push origin feature/amazing-feature`)
+5. Pull Request açın
+
+## 📄 Lisans
+
+Bu proje özel bir eğitim projesi olarak geliştirilmiştir.
+
+## 💡 Gelecek Özellikler (v2)
+
+- 📱 PWA & Mobile App
+- 🧪 AI soru üretici
+- 🏆 Rozet & seviye sistemi
+- ⏳ "Son 7 Gün" sınav modu
+- 📊 Deneme analiz sistemi
+- 🔔 Akıllı bildirimler
+- 👀 Öğrenci ilerleme takibi
+- 🌍 Çoklu dil desteği
+
+## 🐛 Sorun Bildirimi
+
+Bir sorun mu buldunuz? [Issues](https://github.com/your-repo/issues) sayfasından bildirebilirsiniz.
+
+## 📧 İletişim
+
+**Proje Sahibi**: Kadir Alper Sener  
+**Email**: senerkadiralper@gmail.com
+
+---
+
+**Made with ❤️ and ☕ for TYT-AYT Students**

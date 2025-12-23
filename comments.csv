@@ -1,0 +1,9 @@
+topic_id,user_id,text,likes,is_locked,created_at,updated_at
+1,1,Çok faydalı bir konu anlatımı! Teşekkürler.,5,false,2025-01-01 12:00:00,2025-01-01 12:00:00
+1,2,Organellerin fonksiyonlarını daha detaylı anlatabilir misiniz?,2,false,2025-01-01 13:00:00,2025-01-01 13:00:00
+2,1,Mitoz ve mayoz arasındaki farkları tablo halinde görmek isterdim.,3,false,2025-01-01 14:00:00,2025-01-01 14:00:00
+2,3,Bu konu TYT'de çıkıyor mu?,1,false,2025-01-02 09:30:00,2025-01-02 09:30:00
+3,4,DNA replikasyonu için güzel bir video önerir misiniz?,7,false,2025-01-02 10:00:00,2025-01-02 10:00:00
+4,2,Protein sentezi sınavda en çok çıkan konulardan!,12,false,2025-01-02 11:00:00,2025-01-02 11:00:00
+5,3,Besin zinciri soruları genelde kolay oluyor.,4,false,2025-01-02 12:00:00,2025-01-02 12:00:00
+6,1,Ders çok iyi anlatılmış elinize sağlık.,8,false,2025-01-02 13:00:00,2025-01-02 13:00:00
