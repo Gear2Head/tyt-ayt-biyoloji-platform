@@ -1,11 +1,14 @@
 'use client';
 
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/xano/xano-auth-context';
 import { AdminConsoleUnlock } from '@/components/admin/admin-console-unlock';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { GraduationCap, BookOpen, Brain, TrendingUp } from 'lucide-react';
+import { topicsApi, progressApi } from '@/lib/xano/xano-api';
+import { GraduationCap, BookOpen, Brain, TrendingUp, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { ModeToggle } from '@/components/mode-toggle';
 import { UserNav } from '@/components/user-nav';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +16,31 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 export default function DashboardPage() {
     const { user, signOut, isAdmin } = useAuth();
     const router = useRouter();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [stats, setStats] = useState({
+        completedCount: 0,
+        inProgressCount: 0,
+        totalTimeMinutes: 0,
+        averageScore: 0
+    });
+
+    useEffect(() => {
+        if (user) {
+            loadStats();
+        }
+    }, [user]);
+
+    const loadStats = async () => {
+        const data = await progressApi.getStudyStats();
+        setStats(data);
+    };
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/topics?search=${encodeURIComponent(searchQuery)}`);
+        }
+    };
 
     const handleSignOut = async () => {
         await signOut();
@@ -58,21 +86,34 @@ export default function DashboardPage() {
 
                 {/* Welcome Section */}
                 <div className="mb-8">
-                    <h1 className="text-4xl font-display font-bold mb-2">
-                        <span className="text-gradient">Hoş Geldin!</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground">
-                        Bugün hangi konuyu çalışmak istersin?
-                    </p>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <h1 className="text-4xl font-display font-bold mb-2">
+                                <span className="text-gradient">Hoş Geldin!</span>
+                            </h1>
+                            <p className="text-xl text-muted-foreground">
+                                Bugün hangi konuyu çalışmak istersin?
+                            </p>
+                        </div>
+                        <form onSubmit={handleSearch} className="flex-1 max-w-md relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                            <Input
+                                placeholder="Konu ara..."
+                                className="pl-10 h-12 bg-card/50 border-primary/20 focus:border-primary transition-all"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </form>
+                    </div>
                 </div>
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                     {[
-                        { icon: BookOpen, label: 'Tamamlanan', value: '12', color: 'from-primary to-purple-500' },
-                        { icon: Brain, label: 'Devam Eden', value: '3', color: 'from-accent to-cyan-500' },
-                        { icon: TrendingUp, label: 'İlerleme', value: '68%', color: 'from-success to-emerald-500' },
-                        { icon: GraduationCap, label: 'Seviye', value: 'İyi', color: 'from-warning to-amber-500' },
+                        { icon: BookOpen, label: 'Tamamlanan', value: stats.completedCount.toString(), color: 'from-primary to-purple-500' },
+                        { icon: Brain, label: 'Devam Eden', value: stats.inProgressCount.toString(), color: 'from-accent to-cyan-500' },
+                        { icon: TrendingUp, label: 'Toplam Süre', value: `${stats.totalTimeMinutes} dk`, color: 'from-success to-emerald-500' },
+                        { icon: GraduationCap, label: 'Başarı Puanı', value: `%${stats.averageScore}`, color: 'from-warning to-amber-500' },
                     ].map((stat, i) => (
                         <Card key={i} className="hover-lift">
                             <CardContent className="p-6">

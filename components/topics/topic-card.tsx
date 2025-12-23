@@ -1,6 +1,6 @@
 import React from 'react';
 import { Topic } from '@/lib/types';
-import { BookOpen, Heart, Star } from 'lucide-react';
+import { BookOpen, Heart, Star, CheckCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 interface TopicCardProps {
     topic: Topic;
     isFavorited?: boolean;
+    isCompleted?: boolean;
     onFavoriteToggle?: (topicId: string) => void;
 }
 
@@ -26,7 +27,7 @@ const categoryConfig: Record<string, { label: string; color: string }> = {
     'ayt': { label: 'AYT', color: 'from-rose-500 to-pink-500' },
 };
 
-export function TopicCard({ topic, isFavorited = false, onFavoriteToggle }: TopicCardProps) {
+export function TopicCard({ topic, isFavorited = false, isCompleted = false, onFavoriteToggle }: TopicCardProps) {
     const categoryInfo = categoryConfig[topic.category] || { label: topic.category, color: 'from-gray-500 to-gray-600' };
     const difficultyInfo = difficultyConfig[topic.difficulty];
 
@@ -38,13 +39,23 @@ export function TopicCard({ topic, isFavorited = false, onFavoriteToggle }: Topi
 
     return (
         <Link href={`/topics/${topic.id}`}>
-            <Card className="hover-lift group relative overflow-hidden transition-all duration-300">
-                {/* Category Badge with Gradient */}
-                <div className={cn(
-                    "absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold text-white z-10",
-                    `bg-gradient-to-r ${categoryInfo.color}`
-                )}>
-                    {categoryInfo.label}
+            <Card className={cn(
+                "hover-lift group relative overflow-hidden transition-all duration-300",
+                isCompleted && "border-green-500/50 bg-green-500/5"
+            )}>
+                {/* Category & Status Badges */}
+                <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+                    {isCompleted && (
+                        <div className="bg-green-500 text-white p-1 rounded-full shadow-lg animate-in zoom-in duration-300">
+                            <CheckCircle className="w-3 h-3 fill-current" />
+                        </div>
+                    )}
+                    <div className={cn(
+                        "px-3 py-1 rounded-full text-xs font-semibold text-white",
+                        `bg-gradient-to-r ${categoryInfo.color}`
+                    )}>
+                        {categoryInfo.label}
+                    </div>
                 </div>
 
                 <CardContent className="p-6">

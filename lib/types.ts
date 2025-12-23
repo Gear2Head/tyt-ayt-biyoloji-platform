@@ -13,6 +13,7 @@ export interface User {
     createdAt: Date;
     lastLoginAt: Date;
     favorites: string[];
+    completedTopics: string[];
 }
 
 export interface Topic {

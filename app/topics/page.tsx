@@ -6,7 +6,7 @@ import { topicsApi, favoritesApi } from '@/lib/xano/xano-api';
 import { Topic } from '@/lib/types';
 import { TopicCard } from '@/components/topics/topic-card';
 import { TopicFilters } from '@/components/topics/topic-filters';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, BookOpen, GraduationCap, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,13 +15,14 @@ import Link from 'next/link';
 export default function TopicsPage() {
     const { user } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [topics, setTopics] = useState<Topic[]>([]);
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
     const [favorites, setFavorites] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedDifficulty, setSelectedDifficulty] = useState('all');
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
     useEffect(() => {
         if (!user) {
@@ -182,6 +183,7 @@ export default function TopicsPage() {
                                 key={topic.id}
                                 topic={topic}
                                 isFavorited={favorites.includes(topic.id)}
+                                isCompleted={user.completedTopics?.includes(topic.id)}
                                 onFavoriteToggle={handleFavoriteToggle}
                             />
                         ))}

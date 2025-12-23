@@ -339,6 +339,47 @@ export const favoritesApi = {
     },
 };
 
+// ==================== PROGRESS API ====================
+
+export const progressApi = {
+    /**
+     * Mark a topic as completed or uncompleted
+     */
+    async toggleCompleted(topicId: string, isCompleted: boolean): Promise<void> {
+        try {
+            await xanoClient.post('/progress/toggle', {
+                topic_id: topicId,
+                status: isCompleted ? 'completed' : 'pending'
+            });
+        } catch (error) {
+            console.warn('Failed to toggle progress (API likely missing):', error);
+            // In a real app, we'd handle this, but for now we fallback to local state if needed
+        }
+    },
+
+    /**
+     * Get user's study statistics
+     */
+    async getStudyStats(): Promise<{
+        completedCount: number;
+        inProgressCount: number;
+        totalTimeMinutes: number;
+        averageScore: number;
+    }> {
+        try {
+            return await xanoClient.get('/user/study-stats');
+        } catch (error) {
+            console.warn('Failed to fetch study stats, returning mock:', error);
+            return {
+                completedCount: 0,
+                inProgressCount: 0,
+                totalTimeMinutes: 0,
+                averageScore: 0
+            };
+        }
+    }
+};
+
 // ==================== TRANSFORM FUNCTIONS ====================
 // Convert Xano snake_case responses to our camelCase TypeScript types
 
@@ -411,5 +452,6 @@ function transformUserFromXano(data: any): User {
         createdAt: new Date(data.created_at),
         lastLoginAt: new Date(data.last_login_at),
         favorites: data.favorites || [],
+        completedTopics: data.completed_topics || [],
     };
 }

@@ -3,14 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/xano/xano-auth-context';
-import { topicsApi, favoritesApi } from '@/lib/xano/xano-api';
+import { topicsApi, favoritesApi, progressApi } from '@/lib/xano/xano-api';
 import { Topic } from '@/lib/types';
 import { CommentSection } from '@/components/comments/comment-section';
 import { AiContentGenerator } from '@/components/admin/ai-content-generator';
 import { InlineEditor } from '@/components/admin/inline-editor';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Heart, Star, BookOpen, Brain } from 'lucide-react';
+import { ArrowLeft, Heart, Star, BookOpen, Brain, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -36,6 +36,7 @@ export default function TopicDetailPage() {
     const { user } = useAuth();
     const [topic, setTopic] = useState<Topic | null>(null);
     const [isFavorited, setIsFavorited] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const topicId = params.id as string;
@@ -47,7 +48,18 @@ export default function TopicDetailPage() {
         }
         loadTopic();
         checkFavorite();
+        setIsCompleted(user.completedTopics?.includes(topicId) || false);
     }, [user, topicId]);
+
+    const handleToggleComplete = async () => {
+        try {
+            const nextState = !isCompleted;
+            await progressApi.toggleCompleted(topicId, nextState);
+            setIsCompleted(nextState);
+        } catch (error) {
+            console.error('Failed to toggle completion:', error);
+        }
+    };
 
     const loadTopic = async () => {
         try {
@@ -127,6 +139,15 @@ export default function TopicDetailPage() {
                         >
                             <Heart className={cn("w-4 h-4 mr-2", isFavorited && "fill-current")} />
                             {isFavorited ? "Favorilerde" : "Favorilere Ekle"}
+                        </Button>
+                        <Button
+                            variant={isCompleted ? "default" : "outline"}
+                            size="sm"
+                            onClick={handleToggleComplete}
+                            className={cn(isCompleted && "bg-green-500 hover:bg-green-600")}
+                        >
+                            <CheckCircle className={cn("w-4 h-4 mr-2", isCompleted && "fill-current")} />
+                            {isCompleted ? "Tamamlandı" : "Tamamla"}
                         </Button>
                     </div>
                 </div>
