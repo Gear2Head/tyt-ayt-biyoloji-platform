@@ -47,7 +47,7 @@ export default function LoginPage() {
                     </div>
                     <h1 className="text-3xl font-display font-bold">Giriş Yap</h1>
                     <p className="text-muted-foreground">
-                        Eğitim yolculuğuna devam et
+                        Eğitim yolculuğuna GearTech ile devam et
                     </p>
                 </CardHeader>
 

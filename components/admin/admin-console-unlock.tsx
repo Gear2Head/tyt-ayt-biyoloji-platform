@@ -5,6 +5,8 @@ import { useAuth } from '@/lib/xano/xano-auth-context';
 import { ADMIN_CONSOLE_CODE, MAX_LOGIN_ATTEMPTS, LOCKOUT_DURATION, ADMIN_EMAIL } from '@/lib/types';
 import { Lock, Unlock, Shield, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export function AdminConsoleUnlock() {
     const { user } = useAuth();
@@ -108,18 +110,54 @@ export function AdminConsoleUnlock() {
         return null;
     }
 
-    // Admin console already unlocked
     if (unlocked) {
         return (
             <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-green-500/10 border border-emerald-500/30 rounded-lg"
+                className="w-full"
             >
-                <Shield className="w-4 h-4 text-emerald-500" />
-                <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                    Admin Konsolu Aktif
-                </span>
+                <div className="glass rounded-xl p-6 border-2 border-emerald-500/30 bg-emerald-500/5">
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-emerald-500 rounded-lg">
+                                <Unlock className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <h3 className="font-display font-bold text-emerald-900 dark:text-emerald-400">Yönetici Modu Aktif</h3>
+                                <p className="text-xs text-emerald-700/70 dark:text-emerald-400/70">Tam yetkili erişim sağlandı</p>
+                            </div>
+                        </div>
+                        <Link href="/admin">
+                            <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                                <Shield className="w-4 h-4 mr-2" />
+                                Admin Paneline Git
+                            </Button>
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="bg-background/50 p-3 rounded-lg border border-emerald-100 dark:border-emerald-900/30 text-center">
+                            <div className="text-xl font-bold text-emerald-600">Aktif</div>
+                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Durum</div>
+                        </div>
+                        <div className="bg-background/50 p-3 rounded-lg border border-emerald-100 dark:border-emerald-900/30 text-center">
+                            <div className="text-xl font-bold text-emerald-600">{user?.role === 'admin' ? 'Tam' : 'Sınırlı'}</div>
+                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Yetki</div>
+                        </div>
+                        <div className="bg-background/50 p-3 rounded-lg border border-emerald-100 dark:border-emerald-900/30 text-center">
+                            <div className="text-xl font-bold text-emerald-600">Güvenli</div>
+                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Bağlantı</div>
+                        </div>
+                        <div className="bg-background/50 p-3 rounded-lg border border-emerald-100 dark:border-emerald-900/30 text-center cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" onClick={() => {
+                            setUnlocked(false);
+                            sessionStorage.removeItem('admin_console_unlocked');
+                        }}>
+                            <div className="text-xl font-bold text-red-500">Kapat</div>
+                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Otumu Kapat</div>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
         );
     }

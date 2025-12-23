@@ -6,11 +6,14 @@ import { useAuth } from '@/lib/xano/xano-auth-context';
 import { topicsApi, favoritesApi } from '@/lib/xano/xano-api';
 import { Topic } from '@/lib/types';
 import { CommentSection } from '@/components/comments/comment-section';
+import { AiContentGenerator } from '@/components/admin/ai-content-generator';
+import { InlineEditor } from '@/components/admin/inline-editor';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, Heart, Star, BookOpen, Brain } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+
 
 const difficultyConfig = {
     kolay: { label: 'Kolay', color: 'bg-green-500/20 text-green-600 border-green-500/30' },
@@ -169,6 +172,15 @@ export default function TopicDetailPage() {
                     </div>
                 </div>
 
+                {/* AI Content Generator (Admin Only) */}
+                <AiContentGenerator
+                    topicId={topicId}
+                    lastUpdate={topic.lastAiUpdate}
+                    onSuccess={(updatedTopic) => {
+                        setTopic(updatedTopic);
+                    }}
+                />
+
                 {/* AI Summary */}
                 {topic.aiSummary && (
                     <Card className="mb-8 border-purple-500/30 bg-purple-500/5">
@@ -203,9 +215,9 @@ export default function TopicDetailPage() {
                                             "px-2 py-1 rounded text-xs font-semibold",
                                             topic.aiSummary.examProbability === 'yüksek' && "bg-red-500/20 text-red-600",
                                             topic.aiSummary.examProbability === 'orta' && "bg-yellow-500/20 text-yellow-600",
-                                            topic.aiSummary.examProbability === 'düşük' && "bg-green-500/20 text-green-600"
+                                            topic.aiSummary?.examProbability === 'düşük' && "bg-green-500/20 text-green-600"
                                         )}>
-                                            {topic.aiSummary.examProbability.toUpperCase()}
+                                            {topic.aiSummary?.examProbability ? topic.aiSummary.examProbability.toUpperCase() : 'BELİRSİZ'}
                                         </span>
                                     </div>
                                 </div>
@@ -217,10 +229,38 @@ export default function TopicDetailPage() {
                 {/* Content */}
                 <Card className="mb-8">
                     <CardContent className="p-6">
-                        <div className="prose prose-slate max-w-none">
-                            {topic.content.split('\n').map((paragraph, i) => (
-                                <p key={i} className="mb-4 text-foreground">{paragraph}</p>
-                            ))}
+                        {/* Admin Inline Editor for Admin Content */}
+                        <div className="mb-6">
+                            <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center justify-between">
+                                <span>Eğitmen Notları (Admin)</span>
+                                {topic.source === 'ADMIN' && <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Ana Kaynak</span>}
+                            </h3>
+                            <InlineEditor
+                                topicId={topicId}
+                                initialContent={topic.contentAdmin || ''}
+                                fieldName="contentAdmin"
+                                className="text-foreground"
+                                onUpdate={(newContent) => {
+                                    setTopic(prev => prev ? { ...prev, contentAdmin: newContent, content: newContent, source: 'ADMIN' } : null);
+                                }}
+                            />
+                        </div>
+
+                        {/* Admin Inline Editor for AI Content (or just display if not admin) */}
+                        <div className="mb-6 relative">
+                            <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center justify-between">
+                                <span>AI İçeriği (OGM/Meb)</span>
+                                {topic.source === 'OGM' && <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Kaynak: OGM</span>}
+                            </h3>
+                            <InlineEditor
+                                topicId={topicId}
+                                initialContent={topic.contentAi || (topic.source !== 'ADMIN' ? topic.content : '')}
+                                fieldName="contentAi"
+                                className="text-muted-foreground/90 text-sm border-l-2 pl-4 border-purple-200"
+                                onUpdate={(newContent) => {
+                                    setTopic(prev => prev ? { ...prev, contentAi: newContent } : null);
+                                }}
+                            />
                         </div>
                     </CardContent>
                 </Card>

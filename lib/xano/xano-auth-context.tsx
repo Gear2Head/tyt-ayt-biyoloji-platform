@@ -81,20 +81,13 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
             });
 
             // Store token
-            xanoClient.setToken(response.authToken);
-
-            // Transform and set user
-            const userData: User = {
-                uid: response.user.uid,
-                email: response.user.email,
-                displayName: response.user.display_name,
-                role: response.user.role,
-                createdAt: new Date(response.user.created_at),
-                lastLoginAt: new Date(response.user.last_login_at),
-                favorites: response.user.favorites || [],
-            };
-
-            setUser(userData);
+            if (response.authToken) {
+                xanoClient.setToken(response.authToken);
+                // Fetch user details manually since standard auth endpoint might not return user object
+                await fetchCurrentUser();
+            } else {
+                throw new Error('Authentication token not received');
+            }
         } catch (error: any) {
             console.error('Sign in error:', error);
             throw new Error(error.response?.data?.message || 'Giriş yapılamadı');
@@ -106,24 +99,19 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
             const response = await xanoClient.post<XanoAuthResponse>('/auth/signup', {
                 email,
                 password,
+                name: displayName,
                 display_name: displayName,
+                role: 'user'
             });
 
             // Store token
-            xanoClient.setToken(response.authToken);
-
-            // Transform and set user
-            const userData: User = {
-                uid: response.user.uid,
-                email: response.user.email,
-                displayName: response.user.display_name,
-                role: response.user.role,
-                createdAt: new Date(response.user.created_at),
-                lastLoginAt: new Date(response.user.last_login_at),
-                favorites: response.user.favorites || [],
-            };
-
-            setUser(userData);
+            if (response.authToken) {
+                xanoClient.setToken(response.authToken);
+                // Fetch user details manually
+                await fetchCurrentUser();
+            } else {
+                throw new Error('Authentication token not received');
+            }
         } catch (error: any) {
             console.error('Sign up error:', error);
             throw new Error(error.response?.data?.message || 'Kayıt oluşturulamadı');

@@ -4,8 +4,10 @@ import { useAuth } from '@/lib/xano/xano-auth-context';
 import { AdminConsoleUnlock } from '@/components/admin/admin-console-unlock';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { GraduationCap, BookOpen, Brain, TrendingUp, LogOut } from 'lucide-react';
+import { GraduationCap, BookOpen, Brain, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
+import { UserNav } from '@/components/user-nav';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function DashboardPage() {
@@ -39,13 +41,8 @@ export default function DashboardPage() {
                         </Link>
 
                         <div className="flex items-center gap-4">
-                            <span className="text-sm text-muted-foreground hidden sm:block">
-                                Merhaba, <span className="font-semibold text-foreground">{user.displayName}</span>
-                            </span>
-                            <Button variant="outline" size="sm" onClick={handleSignOut}>
-                                <LogOut className="w-4 h-4 mr-2" />
-                                Çıkış
-                            </Button>
+                            <ModeToggle />
+                            <UserNav />
                         </div>
                     </div>
                 </div>

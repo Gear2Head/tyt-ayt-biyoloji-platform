@@ -60,7 +60,7 @@ export default function RegisterPage() {
                     </div>
                     <h1 className="text-3xl font-display font-bold">Kayıt Ol</h1>
                     <p className="text-muted-foreground">
-                        Başarı yolculuğuna başla
+                        Başarı yolculuğuna GearTech Biyoloji ile başla
                     </p>
                 </CardHeader>
 

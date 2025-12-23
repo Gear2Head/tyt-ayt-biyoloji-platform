@@ -1,17 +1,21 @@
-'use client';
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/xano/xano-auth-context';
 import { useRouter } from 'next/navigation';
 import { ContentStats } from '@/components/admin/content-stats';
 import { UserManagement } from '@/components/admin/user-management';
+import { BugReportList } from '@/components/admin/bug-report-list';
+import { bugApi, BugReport } from '@/lib/bug-logger';
 import { Button } from '@/components/ui/button';
 import { ShieldCheck, ArrowLeft } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { users as sampleUsers } from '@/lib/types'; // Assuming this fallback or we fetch users
 
 export default function AdminPage() {
     const { user, isAdmin } = useAuth();
     const router = useRouter();
+    const [bugReports, setBugReports] = useState<BugReport[]>([]);
 
     useEffect(() => {
         if (!user) {
@@ -22,6 +26,21 @@ export default function AdminPage() {
             router.push('/dashboard');
         }
     }, [user, isAdmin]);
+
+    useEffect(() => {
+        if (isAdmin) {
+            loadBugReports();
+        }
+    }, [isAdmin]);
+
+    const loadBugReports = async () => {
+        try {
+            const reports = await bugApi.getAll();
+            setBugReports(reports);
+        } catch (error) {
+            console.error("Failed to load bug reports", error);
+        }
+    };
 
     if (!user || !isAdmin) {
         return (
@@ -83,11 +102,43 @@ export default function AdminPage() {
                     </p>
                 </div>
 
-                {/* Content Statistics */}
-                <ContentStats />
+                <Tabs defaultValue="overview" className="space-y-4">
+                    <TabsList>
+                        <TabsTrigger value="overview">Genel Bakış</TabsTrigger>
+                        <TabsTrigger value="users">Kullanıcılar</TabsTrigger>
+                        <TabsTrigger value="bugs" className="flex items-center gap-2">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                            Hata Raporları
+                        </TabsTrigger>
+                    </TabsList>
 
-                {/* User Management */}
-                <UserManagement />
+                    <TabsContent value="overview">
+                        {/* Content Statistics */}
+                        <ContentStats />
+                    </TabsContent>
+
+                    <TabsContent value="users">
+                        {/* User Management */}
+                        <UserManagement />
+                    </TabsContent>
+
+                    <TabsContent value="bugs">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Sistem Hata Raporları</CardTitle>
+                                <CardDescription>
+                                    Auto Bug Fixer sistemi tarafından yakalanan hatalar ve AI çözüm önerileri.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <BugReportList reports={bugReports} onResolve={loadBugReports} />
+                            </CardContent>
+                        </Card>
+                    </TabsContent>
+                </Tabs>
             </main>
         </div>
     );

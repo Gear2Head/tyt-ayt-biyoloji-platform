@@ -1,11 +1,319 @@
-title,category,sub_category,content,images,videos,difficulty,priority,ai_summary,created_at,updated_at
-Hücre Yapısı ve Organeller,9-sinif,Hücre Biyolojisi,"Hücre canlıların temel yapı birimidir. Prokaryot ve ökaryot hücreler olmak üzere iki ana gruba ayrılır. Ökaryot hücrelerde çekirdek zarı bulunur ve organeller gelişmiştir.",[],[],kolay,1,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Mitoz ve Mayoz Bölünme,10-sinif,Hücre Bölünmesi,"Hücre bölünmesi iki ana tipte gerçekleşir: Mitoz (eşey hücresi olmayan) ve Mayoz (eşey hücresi). Mitoz sonucu 2 hücre, mayoz sonucu 4 hücre oluşur.",[],[],orta,2,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-DNA Replikasyonu,11-sinif,Genetik,"DNA kendini eş yarı yöntemiyle kopyalar. DNA polimeraz enzimi bu süreçte kritik rol oynar. Okazaki parçaları geciken iplikte oluşur.",[],[],zor,3,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Protein Sentezi,12-sinif,Biyokimya,"Protein sentezi transkripsiyon ve translasyon adımlarından oluşur. Ribozomlar protein yapımında görevlidir. mRNA kalıp olarak kullanılır.",[],[],zor,4,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Ekosistem ve Besin Zincirleri,tyt,Ekoloji,"Ekosistemde canlılar arasında besin ilişkileri vardır. Üreticiler-tüketiciler-ayrıştırıcılar döngüsü işler. Enerji piramidi yukarı doğru azalır.",[],[],kolay,5,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Sindirim Sistemi,ayt,Fizyoloji,"Sindirim sistemi besinlerin mekanik ve kimyasal parçalanmasını sağlar. Enzimler önemli rol oynar. Emilim ince bağırsakta gerçekleşir.",[],[],orta,6,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Fotosentez ve Kemosentez,tyt,Bitki Fizyolojisi,"Fotosentez ışık enerjisini kimyasal enerjiye çevirir. Karanlık ve aydınlık tepkimeler vardır. Kloroplastlarda gerçekleşir.",[],[],orta,7,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Solunum Sistemi,ayt,Fizyoloji,"Solunum sistemi gaz alışverişini sağlar. Alveollerde O2 ve CO2 değişimi olur. Hemoglobin oksijen taşır.",[],[],kolay,8,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Kalıtım ve Genetik,11-sinif,Genetik,"Mendel yasaları kalıtımın temelini oluşturur. Dominant ve resesif genler vardır. Genotip ve fenotip kavramları önemlidir.",[],[],orta,9,{},2025-01-01 10:00:00,2025-01-01 10:00:00
-Dolaşım Sistemi,ayt,Fizyoloji,"Kalp ve damarlar dolaşım sistemini oluşturur. Kan vücutta oksijen ve besin taşır. Lenf sistemi bağışıklıkta rol oynar.",[],[],orta,10,{},2025-01-01 10:00:00,2025-01-01 10:00:00
+title,category,sub_category,content,difficulty,priority,images,videos,ai_summary
+"Yaşam Bilimi Biyoloji: Canlıların Ortak Özellikleri","9-sinif","Biyoloji ve Canlıların Ortak Özellikleri","Canlıların yapısını oluşturan ve tüm canlılarda gözlemlenen temel özellikler, biyolojinin en temel konularından biridir. Bu özellikler, canlıları cansız varlıklardan ayıran temel kriterlerdir. İşte tüm canlıların sahip olduğu ortak özellikler detaylı olarak şöyledir:
+
+1. Hücresel Yapı: Tüm canlılar, yapısal ve işlevsel birim olan hücre veya hücrelerden meydana gelir. Canlılar hücre yapısına göre prokaryot (çekirdeksiz, zarlı organeli olmayan) ve ökaryot (çekirdekli ve zarlı organeli olan) olmak üzere iki ana gruba ayrılır. Bakteriler ve arkeler prokaryot; bitkiler, hayvanlar, mantarlar ve protistalar ise ökaryottur. Tek hücreli veya çok hücreli olabilirler.
+
+2. Beslenme: Her canlı, yaşamını sürdürebilmek, enerji üretmek ve yapısını korumak için besin maddelerine ihtiyaç duyar. Beslenme şekline göre canlılar Ototrof (Kendi besinini kendi üretenler - Fotosentez veya Kemosentez ile) ve Heterotrof (Besini dışarıdan hazır alanlar) olarak ikiye ayrılır.
+
+3. Solunum (Hücresel Solunum): Canlılar, besin monomerlerini parçalayarak yaşamları için gerekli olan enerjiyi (ATP) üretirler. Bu sürece hücresel solunum denir. Oksijenli solunum, oksijensiz solunum ve fermantasyon olmak üzere çeşitleri vardır. Solunumun temel amacı enerji üretmektir.
+
+4. Metabolizma: Canlıda gerçekleşen tüm yapım (anabolizma) ve yıkım (katabolizma) tepkimelerinin tamamına metabolizma denir. Anabolizma (Özümleme), küçük moleküllerden büyük molekül sentezlenmesidir (Protein sentezi, Fotosentez). Katabolizma (Yadımlama) ise büyük moleküllerin parçalanmasıdır (Solunum, Sindirim). Genç bireylerde anabolizma > katabolizma iken, yaşlılarda katabolizma > anabolizmadır.
+
+5. Homeostazi (İç Denge): Canlıların değişen çevre şartlarına rağmen iç ortamlarını (pH, sıcaklık, su dengesi vb.) belirli sınırlar içinde sabit tutmasıdır. Örneğin, insanların vücut sıcaklığının 36.5-37 derecede sabit tutulması bir homeostazidir.
+
+6. Boşaltım: Metabolik faaliyetler sonucu oluşan zararlı atık maddelerin (CO2, NH3, Üre vb.) vücuttan veya hücreden uzaklaştırılmasıdır. Tek hücrelilerde hücre yüzeyi ile, bitkilerde yaprak dökümü veya terleme ile, hayvanlarda ise özelleşmiş boşaltım sistemleri ile gerçekleşir.
+
+7. Hareket: Tüm canlılar hareket eder. Tek hücrelilerde sil, kamçı veya yalancı ayaklarla; bitkilerde yönelim (tropizma) veya ırganım (nasti) hareketleri ile; hayvanlarda ise kas ve iskelet sistemi ile aktif yer değiştirme şeklinde görülür.
+
+8. Uyarılara Tepki: Canlılar çevreden gelen ışık, ses, sıcaklık, basınç gibi uyarılara karşı tepki verirler. Bu durum canlının hayatta kalma şansını artırır. Örneğin öglenanın ışığa yönelmesi veya eline iğne batan birinin elini çekmesi.
+
+9. Uyum (Adaptasyon): Canlıların bulundukları ortamda yaşama ve üreme şansını artıran kalıtsal özelliklerin tamamıdır. Bukalemunun renk değiştirmesi, kaktüslerin su depo etmesi birer adaptasyondur.
+
+10. Organizasyon: Canlılarda atomdan başlayıp organizmaya kadar giden bir düzen vardır: Atom -> Molekül -> Organel -> Hücre -> Doku -> Organ -> Sistem -> Organizma.
+
+11. Üreme: Canlıların nesillerini devam ettirebilmek için kendilerine benzer yeni bireyler oluşturmasıdır. Eşeyli ve eşeysiz olmak üzere iki çeşittir. Üreme, canlının yaşamı için değil, neslinin devamı için zorunludur.
+
+12. Büyüme ve Gelişme: Büyüme, tek hücrelilerde sitoplazma hacminin artması; çok hücrelilerde ise hücre sayısı ve hacminin artmasıdır. Gelişme ise canlının yaşamı boyunca geçirdiği olgunlaşma sürecidir.","kolay",5,"[""https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80"",""https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80""]","[]","{""shortSummary"": ""Tüm canlıların ortak özelliklerinin (beslenme, solunum, üreme, vb.) detaylı incelenmesi."", ""tytAytDifferences"": ""TYT Biyolojinin temelidir. Sorularda genellikle 'Tüm canlılarda ortaktır/değildir' şeklinde çeldirici olarak gelir. Örneğin; Mitokondri tüm canlılarda yoktur (Prokaryotlarda yok), ama solunum enzimleri vardır."", ""confusedConcepts"": [""Boşaltım vs Sindirim atığı atma"", ""Büyüme vs Gelişme"", ""Hareket vs Aktif Yer Değiştirme""], ""examProbability"": ""yüksek""}"
+"Canlıların Yapısında Bulunan Temel Bileşikler: İnorganik Bileşikler","9-sinif","Yaşam Bilimi Biyoloji","Canlıların yapısında bulunan temel bileşikler İnorganik ve Organik olmak üzere iki ana gruba ayrılır. İnorganik bileşikler, canlılar tarafından sentezlenemeyen, doğadan hazır olarak alınan ve sindirime uğramadan hücre zarından geçebilen küçük moleküllerdir. Enerji verici olarak KULLANILMAZLAR. Yapıya katılırlar ve düzenleyicidirler.
+
+A. SU (H2O): Canlıların yapısının büyük bir kısmını oluşturur.
+- Çözücü Özelliği: Biyokimyasal tepkimelerin gerçekleşmesi için uygun ortam sağlar. Zehirli atıkların seyreltilmesini ve atılmasını sağlar. Besinlerin taşınmasında görev alır.
+- Öz Isısı Yüksektir: Suyun ısınması ve soğuması zordur. Bu sayede vücut ısısının sabit kalmasına yardımcı olur (Homeostazi). Karaların ve denizlerin ani ısınıp soğumasını engeller.
+- Kohezyon ve Adhezyon: Kohezyon, su moleküllerinin birbirini tutmasıdır (Yüzey gerilimi oluşturur, böceklerin su üzerinde yürümesi). Adhezyon, suyun başka moleküllere yapışmasıdır. Bu özellikler bitkilerde suyun köklerden yapraklara taşınmasını sağlar.
+- Donduğunda Genleşir: Buz, suyun üzerinde yüzer. Bu sayede su altı yaşamı kışın devam edebilir (İzolasyon).
+
+B. ASİTLER VE BAZLAR:
+- Asitler: Suda çözündüğünde H+ iyonu veren, tadı ekşi, mavi turnusolu kırmızıya çeviren maddelerdir.
+- Bazlar: Suda çözündüğünde OH- iyonu veren, tadı acı, kırmızı turnusolu maviye çeviren maddelerdir.
+- pH Cetveli: Ortamın asitlik bazlık derecesini gösterir. Canlılarda biyokimyasal reaksiyonlar belirli pH değerlerinde gerçekleşir. Kanın pH'ı 7.4'tür ve değişmesi ölümcüldür (Tampon çözeltiler bunu dengeler).
+
+C. TUZLAR: Asit ve bazların tepkimesinden (Nötrleşme) oluşur. Vücut sıvılarının ozmotik basıncını düzenler.
+
+D. MİNERALLER:
+- Kalsiyum (Ca): Kemik ve diş yapısına katılır, kas kasılması, kan pıhtılaşması ve sinir iletiminde görevlidir. Eksikliğinde Raşitizm (çocuklarda), Osteoporoz (yetişkinlerde) görülür.
+- Demir (Fe): Hemoglobinin yapısına katılır. Eksikliğinde anemi (kansızlık) görülür.
+- Magnezyum (Mg): Klorofilin yapısına katılır. İnsanlarda kemik yapısına katılır ve enzimlerin çalışmasında kofaktör olarak görev yapar.
+- İyot (I): Tiroksin hormonunun yapısına katılır. Eksikliğinde Guatr oluşur.
+- Flor (F): Diş sağlığı için önemlidir.
+- Fosfor (P): ATP, DNA, RNA ve Hücre zarının yapısına katılır.","kolay",4,"[""https://images.unsplash.com/photo-1605901309584-818e25960b8f?w=800&q=80""]","[]","{""shortSummary"": ""Su, asit-baz, tuzlar ve minerallerin canlılıktaki kritik önemi."", ""tytAytDifferences"": ""TYT konusudur. Suyun özellikleri ve minerallerin eksiklik belirtileri sık sorulur."", ""confusedConcepts"": [""İnorganik bileşikler enerji verir mi? (HAYIR)"", ""Hidroliz vs Dehidrasyon (İnorganikler sindirilmez)""], ""examProbability"": ""orta""}"
+"Canlıların Yapısında Bulunan Temel Bileşikler: Organik Bileşikler - Karbonhidratlar","9-sinif","Yaşam Bilimi Biyoloji","Organik bileşikler: Yapısında C, H ve O elementlerini bir arada bulunduran (istisnalar hariç), canlılar tarafından sentezlenebilen moleküllerdir. Karbonhidratlar, Lipidler, Proteinler, Enzimler, Vitaminler, Nükleik Asitler ve ATP bu gruptadır.
+
+KARBONHİDRATLAR (Şekerler):
+Genel formülleri (CH2O)n şeklindedir. Canlıların **birinci dereceden enerji kaynağıdır**. Ayrıca yapıya (Hücre çeperi, DNA, RNA) katılırlar.
+
+1. Monosakkaritler (Tek Şekerliler):
+- Sindirilmezler, hücre zarından doğrudan geçerler.
+- Karbon sayılarına göre:
+  - 3C'lu (Triozlar): Fosfogliseradehite vb. (Ara ürünler)
+  - 5C'lu (Pentozlar): Riboz (RNA ve ATP yapısında), Deoksiriboz (DNA yapısında). Enerji verici olarak KULLANILMAZLAR.
+  - 6C'lu (Heksozlar): Glikoz (Kan şekeri/Üzüm şekeri), Fruktoz (Meyve şekeri), Galaktoz (Süt şekeri). İsimleri farklı formülleri aynıdır (İzomer). Beyin hücreleri sadece glikoz kullanır.
+
+2. Disakkaritler (İki Şekerliler):
+İki monosakkaritin Glikozit bağı ile birleşmesiyle oluşur. Oluşurken 1 molekül su açığa çıkar (Dehidrasyon).
+- Glikoz + Glikoz -> Maltoz (Arpa şekeri) + H2O
+- Glikoz + Fruktoz -> Sükroz (Çay şekeri) + H2O
+- Glikoz + Galaktoz -> Laktoz (Süt şekeri) + H2O
+Sindirilmeden kana geçemezler. Maltoz ve Sükroz bitkisel, Laktoz hayvansaldır.
+
+3. Polisakkaritler (Çok Şekerliler):
+Çok sayıda glikozun glikozit bağlarıyla birleşmesiyle oluşur. (n)Glikoz -> Polisakkarit + (n-1)H2O
+Depo Polisakkaritler:
+- Nişasta: Bitkilerde glikozun fazlasının depo şeklidir (Lökoplastlarda). İyot ile mavi-mor renk verir.
+- Glikojen: Bakteri, Arke, Mantar ve Hayvanlarda glikozun depo şeklidir. İnsanlarda Karaciğer ve Kaslarda depolanır.
+Yapısal Polisakkaritler:
+- Selüloz: Bitkilerin hücre duvarı yapısına katılır. Suda çözünmez. İnsanlar selülozu sindiremez ancak bağırsak sağlığı ve mukus salgısı için gereklidir (Lifli gıda). Otçullar bağırsaklarındaki bakteriler sayesinde sindirebilir.
+- Kitin: Böceklerin (Eklem bacaklıların) dış iskeletinde ve Mantarların hücre duvarında bulunur. Yapısında Azot (N) bulunan tek karbonhidrattır. Saf kitin yumuşaktır, kalsiyum tuzları ile sertleşir.","orta",5,"[""https://images.unsplash.com/photo-1615818451842-8c9df4389025?w=800&q=80""]","[]","{""shortSummary"": ""Karbonhidratların yapısı, çeşitleri ve görevleri."", ""tytAytDifferences"": ""TYT için temel konudur. Depo ve yapısal polisakkaritlerin hangi canlıda bulunduğu çok önemlidir."", ""confusedConcepts"": [""Laktoz Bitkisel mi?"", ""Kitin Azot içerir mi?"", ""Deoksiriboz enerji verir mi?""], ""examProbability"": ""yüksek""}"
+"Enzimler","9-sinif","Yaşam Bilimi Biyoloji","Enzimler, canlı sistemlerde gerçekleşen tepkimeleri hızlandıran biyolojik katalizörlerdir. Aktivasyon enerjisini (tepkimenin başlaması için gereken enerji) DÜŞÜREREK reaksiyonu hızlandırırlar. Reaksiyondan değişmeden çıkarlar.
+
+Enzimlerin Yapısı:
+1. Basit Enzim: Sadece proteinden oluşur (Örn: Pepsin).
+2. Bileşik Enzim (Holoenzim): Protein kısım (Apoenzim) + Yardımcı Kısım.
+   - Yardımcı kısım vitamin ise: Koenzim (NAD, FAD, B vitaminleri).
+   - Yardımcı kısım mineral ise: Kofaktör (Mg, Fe, Ca vb.).
+   - Apoenzim enzimin ne iş yapacağını (substratı) belirler, yardımcı kısım işi yapar (Aktif bölge).
+
+Enzimlerin Özellikleri:
+- Substratlarına özgüdürler (Anahtar-Kilit uyumu). Substrat enzimin 'aktif bölgesine' bağlanır.
+- Genellikle tersinir (çif yönlü) çalışırlar (Sindirim enzimleri hariç).
+- Çok hızlı çalışırlar.
+- Takımlar halinde çalışabilirler (Birinin ürünü diğerinin substratı olabilir).
+- Hücre içinde üretilirler ancak hücre içinde veya dışında çalışabilirler (Sindirim enzimleri mide boşluğunda çalışır).
+'-az' eki alırlar (Maltaz, Sükraz). İnaktifler '-jen' eki alır (Pepsinojen).
+
+Enzim Çalışmasına Etki Eden Faktörler:
+1. Sıcaklık: Enzimler protein yapılıdır. Yüksek sıcaklık yapısını bozar (Denatürasyon - geri dönüşsüz). Düşük sıcaklıkta çalışmazlar ama bozulmazlar (Derin dondurucu mantığı). Optimum sıcaklık genelde 37°C'dir.
+2. pH: Her enzimin optimum pH değeri vardır. Pepsin (pH 2 - Asidik), Tripsin (pH 8.5 - Bazik), Amilaz (pH 7 - Nötr).
+3. Enzim ve Substrat Miktarı: Sınırsız substrat ve enzim varsa hız sürekli artar. Biri sınırlıysa hız bir yerde sabitlenir.
+4. Su: Enzimlerin çalışması için ortamda en az %15 su gerekir. Kuru gıdaların bozulmamasının (reçel, bal, pastırma) sebebi budur; bakterilerin enzimleri susuzluktan çalışamaz.
+5. Yüzey Alanı: Enzimler substrata dış yüzeyden etki eder. Yüzey alanı arttıkça hız artar (Kıyma et parça etten daha çabuk sindirilir).
+6. Aktivatörler ve İnhibitörler: Aktivatörler hızı artırır (Su, mineraller). İnhibitörler hızı yavaşlatır veya durdurur (Ağır metaller, zehirler, siyanür, yüksek ateş).","zor",5,"[""https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80""]","[]","{""shortSummary"": ""Biyolojik katalizörler olan enzimlerin yapısı ve çalışma prensipleri."", ""tytAytDifferences"": ""TYT'de grafik yorumlama soruları çok gelir. Hız zaman, ürün miktarı zaman grafikleri önemlidir."", ""confusedConcepts"": [""Enzim tepkimeyi başlatır mı? (HAYIR, başlatmaz hızlandırır)"", ""Soğukta enzim bozulur mu?""], ""examProbability"": ""yüksek""}"
+"Hücre Teorisi ve Organeller","9-sinif","Hücre","Hücre, canlının en küçük yapı ve işlev birimidir.
+
+Modern Hücre Teorisi:
+1. Tüm canlılar bir veya birden çok hücreden oluşur.
+2. Hücreler canlının yapısal ve işlevsel birimidir.
+3. Yeni hücreler, var olan hücrelerin bölünmesiyle oluşur.
+4. Hücreler kalıtım materyali içerir ve bunu yavrulara aktarır.
+5. Tüm metabolik olaylar hücre içinde gerçekleşir.
+
+Hücrenin Kısımları (Ökaryot):
+1. Hücre Zarı: Canlı, esnek, seçici-geçirgen. Karbonhidrat, yağ ve proteinden oluşur (Akıcı Mozaik Zar Modeli). Karbonhidratlar (Glikoprotein/Glikolipid) zarın 'kimliğini' ve seçiciliğini belirler.
+2. Sitoplazma: Yarı akışkan sıvı ve organellerden oluşur.
+
+Organeller:
+- Ribozom: PROTEİN SENTEZİ yapar. Tüm canlılarda (prokaryot dahil) ortaktır. Zarsızdır.
+- Endoplazmik Retikulum (ER): Madde iletimi kanalları.
+  - Granüllü ER: Üzerinde ribozom var, protein işleme.
+  - Granülsüz (Düz) ER: Yağ/Karb. sentezi, Kalsiyum depolama (kaslarda), Zehir temizleme (karaciğerde).
+- Golgi Aygıtı: Salgı paketleme. Glikoprotein/Glikolipid sentezi (hücre zarı kimliği için). Sperm, alyuvar hariç her yerde var.
+- Lizozom: HÜCRE İÇİ SİNDİRİM. İçinde sindirim enzimleri var. Enzimleri ribozom üretir, golgi paketler. Otoliz (intihar) ve Metamorfozda etkilidir. Gelişmiş bitkilerde bulunmaz.
+- Mitokondri: OKSİJENLİ SOLUNUM (ATP Üretimi). Çift zarlıdır. Kendine ait DNA, RNA ve Ribozomu vardır. Bölünebilir. Enerji ihtiyacı çok olan (kas, sinir) hücrelerde çoktur.
+- Kloroplast: FOTOSENTEZ (Besin+O2 üretimi). Sadece bitki ve alglerde. Çift zarlı. Kendi DNA/RNA'sı var. Yeşil rengi Klorofil verir.
+- Kromoplast: Bitkiye sarı, turuncu, kırmızı renk verir.
+- Lökoplast: Renksiz depo organeli (Nişasta, yağ, protein depolar).
+- Koful: Depo, besin, boşaltım, kontraktil (tatlı suda yaşayanlarda su dengesi) çeşitleri vardır. Bitkilerde büyük ve merkezi, hayvanlarda küçük ve çokludur.
+- Sentrozom: HÜCRE BÖLÜNMESİ. İğ ipliklerini oluşturur. Hayvan hücrelerinde var, gelişmiş bitkilerde yok. Zarsız.
+- Peroksizom: Hem bitki hem hayvanda var. Zehirli H2O2'yi Katalaz enzimi ile suya ve oksijene parçalar.
+
+Hücre İskeleti: Mikrotübül, mikrofilament ve arafilamentler hücreye şekil verir, organelleri sabitler.","orta",5,"[""https://images.unsplash.com/photo-1590212151175-e58edd96185b?w=800&q=80""]","[]","{""shortSummary"": ""Hücrenin bölümleri ve organellerin detaylı görevleri."", ""tytAytDifferences"": ""TYT sorusudur. Hangi organelin hangi canlıda olduğu (Bitki vs Hayvan vs Bakteri) ayrımı en kritik noktadır."", ""confusedConcepts"": [""Lizozom sindirim enzimi üretir mi? (Hayır, sadece taşır)"", ""Mitokondri tüm hücrelerde var mı? (Hayır, prokaryotlarda ve alyuvarlarda yok)""], ""examProbability"": ""yüksek""}"
+"Mitoz Bölünme","10-sinif","Hücre Bölünmeleri","Mitoz, tek hücrelilerde üremeyi; çok hücrelilerde büyüme, gelişme ve yaraların onarımını sağlar. Kromozom yapısı ve sayısı DEĞİŞMEZ. Sonuçta genetip yapısı tıpatıp aynı 2 hücre oluşur (Mutasyon yoksa).
+
+Hücre Döngüsü:
+1. İNTERFAZ (Hazırlık): En uzun evre.
+   - G1: Büyüme, organel artışı, protein sentezi.
+   - S: DNA EŞLENMESİ (Replikasyon). Kromozomlar iki kromatitli hale gelir.
+   - G2: Son hazırlıklar, enzim sentezi.
+   (Sinir, Kas, Retina, Alyuvar hücreleri G0 evresindedir, bölünmezler).
+
+2. MİTOTİK EVRE (M): Çekirdek bölünmesi (Karyokinez) ve Sitoplazma bölünmesi (Sitokinez).
+
+Karyokinez Evreleri (İPMAT):
+- PROFAZ: Kromatin iplik kısalıp kalınlaşarak KROMOZOM olur. Çekirdek zarı ve çekirdekçik erir. Sentrozomlar kutuplara çekilir ve iğ ipliklerini oluşturur.
+- METAFAZ: Kromozomlar hücrenin EKVATORAL düzlemine tek sıra halinde dizilir. Kromozomların en net görüldüğü evredir (Karyotip analizi burada yapılır).
+- ANAFAZ: KARDEŞ KROMATİTLER birbirinden ayrılır ve zıt kutuplara çekilir. Ayrılan her kromatit artık bir kromozomdur (Kromozom sayısı geçici olarak 2 katına çıkar).
+- TELOFAZ: Profazın tersi. Çekirdek zarı yeniden oluşur. Kromozomlar tekrar kromatin ipliğe dönüşür. İki çekirdekli bir görüntü oluşur.
+
+SİTOKİNEZ (Sitoplazma Bölünmesi):
+- Hayvanlarda: BOĞUMLANMA ile (Mikrofilamentler sayesinde).
+- Bitkilerde: ARA LAMEL (Ara plak) oluşumu ile (Golgi faaliyeti). Çeper olduğu için boğumlanamaz.
+
+Sonuç: 2n kromozomlu bir hücreden, 2n kromozomlu ve genetik yapısı aynı 2 yeni hücre oluşur.","kolay",5,"[""https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80""]","[]","{""shortSummary"": ""Mitoz bölünmenin evreleri ve özellikleri."", ""tytAytDifferences"": ""TYT konusudur. Grafik sorularında DNA miktarı değişimi (S evresinde 2 katına çıkar, Sitokinezde yarıya iner) sorulur."", ""confusedConcepts"": [""İnterfaz mitozun bir evresi midir? (Hayır, döngünün hazırlık evresidir)"", ""Kromozom sayısı ne zaman değişir? (Anafazda geçici artar)"", ""Kardeş Kromatit vs Homolog Kromozom""], ""examProbability"": ""yüksek""}"
+"Mayoz Bölünme ve Eşeyli Üreme","10-sinif","Hücre Bölünmeleri","Eşeyli üreyen canlılarda gamet (üreme hücresi - sperm/yumurta) oluşumunu sağlayan bölünmedir. Amaç: Kromozom sayısını yarıya indirmek (2n -> n) ve tür içi kromozom sayısını nesiller boyu sabit tutmaktır. KALITSAL ÇEŞİTLİLİK SAĞLAR.
+
+Mayoz Özellikleri:
+- Sadece 2n kromozomlu üreme ANA hücrelerinde görülür.
+- Sonuçta n kromozomlu 4 hücre oluşur.
+- İki aşamada gerçekleşir: Mayoz I ve Mayoz II.
+- İnterfaz (DNA eşlenmesi) sadece başta bir kez olur.
+
+MAYOZ I: (Kalıtsal çeşitlilik burada sağlanır, kromozom sayısı yarıya iner)
+- Profaz I: En uzun ve önemli evre.
+  - Tetrat: 2 Homolog kromozomun yan yana gelmesi (4 kromatit).
+  - Sinapsis: Homolog kromozomların birbirine sarılması.
+  - Krossing-Over: Kardeş olmayan kromatitler arasında GEN PARÇASI DEĞİŞİMİ. Çeşitliliği artıran en önemli olaydır (Her mayozda olmak zorunda değil).
+- Metafaz I: HOMOLOG KROMOZOMLAR ekvatura ÇİFT sıra halinde dizilir. Rastgele dizilim de çeşitlilik sağlar.
+- Anafaz I: HOMOLOG KROMOZOMLAR rastgele ayrılarak zıt kutuplara çekilir. (Kromozom sayısının yarıya inmesinin sebebi budur).
+- Telofaz I ve Sitokinez: n kromozomlu 2 hücre oluşur. Genetik yapıları farklıdır.
+
+MAYOZ II: (Mitoza benzer)
+- DNA eşlenmesi (İnterfaz) yoktur.
+- Profaz II, Metafaz II (Tek sıra dizilim)
+- Anafaz II: Mitoz gibi KARDEŞ KROMATİTLER ayrılır. (Kromozom sayısı geçici 2 katına çıkar).
+- Telofaz II ve Sitokinez: Toplam 4 yeni hücre oluşur (n kromozomlu).
+
+Eşeyli Üreme: İki farklı cinsiyete ait gametlerin birleşmesiyle (Döllenme) yeni birey oluşması. Temeli Mayoz ve Döllenmedir. Kalıtsal varyasyon sağlar, değişen çevre şartlarına dayanıklı bireyler oluşur.","orta",5,"[""https://images.unsplash.com/photo-1542395765-763488734be0?w=800&q=80""]","[]","{""shortSummary"": ""Mayoz bölünme mekanizması ve kalıtsal çeşitlilik."", ""tytAytDifferences"": ""TYT konusudur. Mayoz ve Mitoz farkları tablosu çok sorulur. Homolog kromozom lafı geçiyorsa kesin Mayozdur."", ""confusedConcepts"": [""Mayoz I ve II arasındaki farklar"", ""Krossing over her zaman olur mu?"", ""Homolog vs Kardeş kromatit ayrılması""], ""examProbability"": ""yüksek""}"
+"Kalıtım (Mendel Genetiği)","10-sinif","Kalıtım","Kalıtım bilimi (Genetik), karakterlerin nesilden nesile nasıl aktarıldığını inceler.
+Kavramlar:
+- Gen: DNA üzerinde belirli bir karakteri şifreleyen parça.
+- Alel: Bir genin farklı versiyonları (A, a). Biri anneden biri babadan gelir.
+- Genotip: Canlının genetik yapısı (AA, Aa, aa).
+- Fenotip: Genotipin dış görünüşe yansıması (Sarı saç, mavi göz). Çevre de etkili olabilir.
+- Dominant (Baskın): Etkisini her zaman gösteren (Büyük harf - A).
+- Resesif (Çekinik): Etkisini sadece homozigotken gösteren (Küçük harf - a).
+- Homozigot: Alellerin aynı olması (AA, aa). (Saf Döl)
+- Heterozigot: Alellerin farklı olması (Aa). (Melez Döl)
+
+MENDEL İLKELERİ:
+1. İzotop Yasası (Benzerlik): AA x aa çaprazlamasından oluşan tüm F1 dölü hetorozigot (Aa) ve aynı fenotiptedir.
+2. Ayrılma İlkesi: Gamet oluşurken aleller birbirinden ayrılır ve her gamete sadece biri gider. Bağımsız.
+
+Çaprazlamalar:
+- Monohibrit: Tek karakter bakımından (Aa x Aa). Fenotip oranı 3:1, Genotip oranı 1:2:1.
+- Dihibrit: İki karakter bakımından (AaBb x AaBb). Fenotip oranı 9:3:3:1.
+
+Eş Baskınlık (Co-Dominantlık): İki alel birbirine baskınlık kuramaz. Heterozigot durumda ikisinin de etkisi görülür. Örn: AB kan grubu, MN kan grubu.
+
+KAN GRUPLARI:
+- ABO Sistemi: A ve B eş baskın, O çekiniktir.
+  - A Grubu: Genotipi AA veya AO. Antijeni A, Antikoru Anti-B.
+  - B Grubu: Genotipi BB veya BO. Antijeni B, Antikoru Anti-A.
+  - AB Grubu: Genotipi AB. Antijen A ve B. ANTİKOR YOK (Genel Alıcı).
+  - O Grubu: Genotipi OO. ANTİJEN YOK (Genel Verici). Antikor Anti-A ve Anti-B.
+- Rh Faktörü: R (Pozitif) baskın, r (negatif) çekinik.
+  - Kan Uyuşmazlığı (Eritroblastosis Fetalis): Anne Rh(-), Baba Rh(+) ve Bebek Rh(+) ise görülür. Annenin antikorları bebeğin kanını çökertebilir. İlk çocukta genelde sorun olmaz, ikinci Rh(+) çocukta risk artar.
+
+Eşeye Bağlı Kalıtım:
+- X'e Bağlı Çekinik: Renk Körlüğü ve Hemofili. Erkeklerde (XY) tek genle, kadınlarda (XX) iki genle ortaya çıkar. Bu yüzden erkeklerde daha sık görülür. Baba hastaysa kızına geni kesin aktarır ama hasta olması için anneden de alması gerekir. Anne hastaysa erkek çocuk KESİN hastadır.","zor",5,"[""https://images.unsplash.com/photo-1595125916057-0ae0e9f193cb?w=800&q=80""]","[]","{""shortSummary"": ""Mendel genetiği, kan grupları ve eşeye bağlı kalıtım problemleri."", ""tytAytDifferences"": ""Hesaplama soruları TYT'de gelir. Soyağacı analizi en popüler soru tipidir."", ""confusedConcepts"": [""Eş baskınlık vs Eksik baskınlık"", ""Kan uyuşmazlığı şartları"", ""Renk körlüğü anneden mi babadan mı geçer?""], ""examProbability"": ""yüksek""}"
+"Ekosistem Ekolojisi","10-sinif","Ekoloji","Ekoloji: Canlıların birbirleriyle ve çevreleriyle ilişkilerini inceleyen bilim.
+
+Organizasyon: Organizma -> Popülasyon (Aynı tür topluluğu) -> Komünite (Farklı popülasyonlar) -> Ekosistem (Komünite + Cansız Çevre) -> Biyosfer
+
+Ekosistemin Bileşenleri:
+1. Abiyotik (Cansız) Faktörler: Işık, Sıcaklık, İklim, Toprak, Su, pH.
+2. Biyotik (Canlı) Faktörler:
+   - Üreticiler (Ototroflar): Besin üretenler (Bitkiler, algler, siyanobakteriler). Fotosentez veya kemosentez yaparlar.
+   - Tüketiciler (Heterotroflar): Hazır beslenenler (Otçul, Etçil, Hepçil).
+   - Ayrıştırıcılar (Saprofitler): Ölü organik atıkları inorganik maddelere çevirerek madde döngüsünü sağlarlar (Bazı bakteri ve mantarlar). Doğanın çöpçüleridir, çok ÖNEMLİDİR.
+
+Besin Zinciri ve Enerji Akışı:
+Üretici -> Birincil Tüketici (Otçul) -> İkincil Tüketici (Etçil) -> Üçüncül Tüketici.
+- Enerji Akışı: Tek yönlüdür (Üreticiden tüketiciye). Her basamakta enerjinin sadece %10'u aktarılır (%90'ı ısı/hareket olarak kaybolur).
+- Biyokütle: Aşağıdan yukarı azalır.
+- Birey Sayısı: Genelde aşağıdan yukarı azalır.
+- Biyolojik Birikim (Zehir): Aşağıdan yukarı ARTAR. (En çok zehir insan/yırtıcı kuşlarda birikir).
+
+Madde Döngüleri:
+- Azot Döngüsü: Havadaki N2 gazını bitkiler doğrudan kullanamaz.
+  1. Fiksasyon: Havadaki azotu toprağa bağlama (Rhizobium bakterileri, Baklagil kökleri, Yıldırım/Şimşek).
+  2. Nitrifikasyon: Amonyağın (NH3) bitkinin kullanabileceği Nitrat tuzlarına dönüşmesi. Kemosentetik bakteriler (Nitrit/Nitrat bakterileri) yapar.
+  3. Denitrifikasyon: Topraktaki azotun tekrar havaya verilmesi. Toprak verimini düşürür.","kolay",4,"[""https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80""]","[]","{""shortSummary"": ""Ekosistem yapısı, besin zinciri ve madde döngüleri."", ""tytAytDifferences"": ""TYT konusudur. Azot döngüsü şeması ve biyolojik birikim grafikleri sık sorulur."", ""confusedConcepts"": [""Enerji döngüsel midir? (Hayır, tek yönlüdür)"", ""Ayrıştırıcılar hangi basamakta? (Her basamakta)"", ""Nitrifikasyonu kim yapar?""], ""examProbability"": ""orta""}"
+"Sinir Sistemi","11-sinif","İnsan Fizyolojisi","Denetleyici ve Düzenleyici Sistemlerin en hızlısı Sinir Sistemidir. Temel birimi NÖRON'dur.
+
+Nöron Yapısı:
+- Dentrit: Uyarıları alan kısa uzantılar.
+- Hücre Gövdesi: Çekirdek ve organellerin olduğu yer.
+- Akson: Uyarıyı ileten uzun uzantı. (Miyelin kılıf varsa iletim 10 kat hızlıdır - Atlamalı iletim). Ranvier boğumlarında miyelin yoktur.
+
+İmpuls Oluşumu ve İletimi:
+Nöron dinlenme halindeyken (Polarizasyon) dışı (+), içi (-) yüklüdür (Sodyum-Potasyum pompası - ATP harcar). Uyarı gelince Na+ kapıları açılır, Na+ içeri girer ve iç (+) olur (Depolarizasyon). Sonra K+ dışarı çıkar, tekrar dış (+) olur (Repolarizasyon).
+- Hep ya da Hiç Prensibi: Eşik değerin altındaki uyarılara tepki verilmez, üstündekilere maksimum tepki verilir.
+- İmpuls hızı değişmez, ama frekansı değişir (Sıcak suya dokununca daha çok impuls gider).
+
+Sinaps: İki nöronun bağlantı noktasıdır. İletim kimyasaldır (Nörotransmitter maddeler: Asetilkolin, Dopamin vb. ile). İletim yavaştır. Seçici direnç vardır (Her uyarı her yere gitmez).
+
+İNSAN SİNİR SİSTEMİ:
+A. Merkezi Sinir Sistemi (MSS):
+1. BEYİN:
+   - Ön Beyin: Uç Bölüm (Bilinç, hafıza, zeka, duyu algılama). Ara Bölüm (Talamus: koku hariç duyuların dağıtımı, Hipotalamus: Homeostazi merkezi - açlık, susuzluk, vücut ısısı, hipofiz kontrolü).
+   - Orta Beyin: Görme ve işitme refleksleri (göz bebeği büyümesi), kas tonusu.
+   - Arka Beyin: Beyincik (Denge ve Kas koordinasyonu). Omurilik Soğanı (HAYAT DÜĞÜMÜ - Solunum, dolaşım, sindirim gibi sistemleri ve yutkunma, kusma reflekslerini yönetir). Pons (Sadece memelilerde, beyincik yarımküreleri arası bağlantı).
+2. OMURİLİK: Refleks merkezi ve beyin ile organlar arası iletim. Alışkanlık hareketleri (yüzme, bisiklet).
+
+B. Çevresel Sinir Sistemi (ÇSS):
+- Somatik: İstemli kasları yönetir (Miyelinli, hızlı).
+- Otonom: İstemsiz iç organları yönetir (Miyelinsiz, yavaş). Sempatik (Savaş/Kaç - Hızlandırır, sindirimi yavaşlatır) ve Parasempatik (Dinlen/Sindiri - Yavaşlatır, sindirimi hızlandırır).","zor",5,"[""https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80""]","[]","{""shortSummary"": ""Nöron yapısı, impuls iletimi ve merkezi sinir sistemi bölümleri."", ""tytAytDifferences"": ""AYT konusudur. İmpuls iletim mekanizması (Na-K pompası) ve beyin bölümlerinin görevleri (özellikle Hipotalamus ve Omurilik Soğanı) çok sorulur."", ""confusedConcepts"": [""Sinapslarda iletim elektriksel mi?"", ""Refleksleri kim yönetir?"", ""Sempatik sistem ne yapar?""], ""examProbability"": ""yüksek""}"
+"Endokrin Sistem","11-sinif","İnsan Fizyolojisi","Hormonlarla düzenleme sağlayan sistemdir. Hormonlar kan yoluyla taşınır, hedef organa gider. Etkisi geç başlar ama uzun sürer.
+
+1. HİPOFİZ BEZİ: Orkestra şefi. Hipotalamus tarafından kontrol edilir.
+   - Ön Lop: STH (Büyüme), TSH (Tiroidi uyarır), ACTH (Böbrek üstü bezini uyarır), Prolaktin (Süt üretimi), FSH/LH (Üreme sistemi), MSH (Deri rengi).
+   - Arka Lop: Hormon üretmez, hipotalamusun ürettiği hormonları depolar. ADH (Böbrekten suyun geri emilimi - eksikliğinde şekersiz şeker hastalığı), Oksitosin (Doğum sancısı, sütün kanallara inmesi).
+
+2. TİROİD BEZİ:
+   - Tiroksin: Metabolizma hızını ayarlar. İyot yapılıdır. Çocuklarda eksikliği zeka geriliği (Kretenizm), yetişkinlerde guatr/miksodem.
+   - Kalsitonin: Kandaki kalsiyumu KEMİĞE geçirir (Kandaki Ca azalır).
+
+3. PARATİROİD BEZİ:
+   - Parathormon: Kemikten kana kalsiyum geçirir (Kandaki Ca artar). Böbrekten ve bağırsaktan Ca emilimini artırır. Kalsitonin ile Antagonist (zıt) çalışır.
+
+4. BÖBREK ÜSTÜ BEZLERİ (Adrenal):
+   - Kabuk (Korteks): Kortizol (Stres hormonu, kan şekerini artırır, bağışıklığı baskılar). Aldosteron (Tuz/Su dengesi, Na geri emilir K atılır).
+   - Öz (Medulla): Adrenalin (Heyecan, korku. Kalp atışı, kan şekeri, basıncı artar. Göz bebeği büyür). Nöradrenalin (Benzer etki). Sempatik sistemle çalışır.
+
+5. PANKREAS: Karma bezdir (Hem enzim hem hormon).
+   - Langerhans adacıkları: Alfa hücreleri Glukagon (Kan şekerini ARTIRIR - açken). Beta hücreleri İnsülin (Kan şekerini AZALTIR - tokken). İnsülin eksikliğinde Şeker Hastalığı (Diyabet) oluşur.
+
+6. EŞEYSEL BEZLER:
+   - Östrojen/Progesteron (Kadın), Testosteron (Erkek). İkincil eşey özelliklerini ve üreme döngüsünü sağlarlar.","orta",4,"[""https://images.unsplash.com/photo-1579165466741-7f35a4755657?w=800&q=80""]","[]","{""shortSummary"": ""Hormonlar ve görevleri, homeostazi."", ""tytAytDifferences"": ""AYT konusudur. Kalsiyum dengesi (Kalsitonin-Parathormon) ve Kan şekeri dengesi (İnsülin-Glukagon) mekanizmaları banko sorudur."", ""confusedConcepts"": [""ADH ne yapar?"", ""Kortizol kan şekerini ne yapar?"", ""Gizli şeker nedir?""], ""examProbability"": ""yüksek""}"
+"Genden Proteine (Protein Sentezi)","12-sinif","Genden Proteine","Nükleik Asitler (Yönetici Moleküller): DNA ve RNA. Nükleotitlerden oluşurlar (Fosfat + 5C Şeker + Azotlu Baz).
+- DNA: Çift iplikli, sarmal (Helix). Şekeri Deoksiriboz. Bazları A, G, C, Timin(T). Kendini eşleyebilir (Replikasyon).
+- RNA: Tek iplikli. Şekeri Riboz. Bazları A, G, C, Urasil(U). Protein sentezinde görevlidir. 3 çeşittir: mRNA (mesajcı), tRNA (taşıyıcı), rRNA (ribozomal).
+
+PROTEİN SENTEZİ (Santral Dogma):
+DNA -> mRNA -> Protein
+Yön: Replikasyon -> Transkripsiyon (Yazılma) -> Translasyon (Okunma).
+Replikasyon sadece hücre bölüneceği zaman olur. Protein sentezinde sadece Transkripsiyon ve Translasyon olur.
+
+Süreç:
+1. Transkripsiyon: Çekirdekte DNA'nın ilgili gen bölgesinden mRNA sentezlenir. (A'nın karşısına U gelir!).
+2. mRNA sitoplazmaya geçer ve Ribozoma bağlanır.
+3. Translasyon: Ribozom mRNA'yı okur. Her 3 bazlık şifreye KODON denir.
+   - Başlatma Kodonu: AUG (Metionin).
+   - Bitiş Kodonları: UAA, UAG, UGA (Amino asit karşılığı yoktur).
+4. tRNA'lar sitoplazmadan uygun amino asitleri ribozoma getirir (Antikodonları ile kodonlara bağlanarak).
+5. Amino asitler arasında PEPTİT bağı kurulur ve polipeptit (Protein) oluşur.
+
+Polizom: Bir mRNA'nın birden fazla ribozom tarafından aynı anda okunması. Aynı proteinden kısa sürede çokça üretmeyi sağlar.
+
+Bir gen bir polipeptit hipotezi: Her polipeptit bir gen tarafından şifrelenir. Gen mutasyona uğrarsa ilgili enzim üretilemez ve metabolik hastalıklar oluşur.","zor",5,"[""https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80""]","[]","{""shortSummary"": ""DNA, RNA yapısı ve protein sentezi mekanizması."", ""tytAytDifferences"": ""AYT konusudur. Kodon-Antikodon eşleşmesi ve amino asit dizilimi soruları çözülmelidir."", ""confusedConcepts"": [""Tüm RNA'lar proteini mi şifreler?"", ""Durdurucu kodon amino asit getirir mi? (Hayır)"", ""Anti-kodon nerede bulunur?""], ""examProbability"": ""yüksek""}"
+"Canlılarda Enerji Dönüşümleri: Fotosentez","12-sinif","Canlılarda Enerji Dönüşümleri","ATP (Adenozin Tri Fosfat): Canlının doğrudan kullandığı enerji molekülü. Depolanamaz, hücreden hücreye aktarılmaz. Adenin + Riboz + 3 Fosfat.
+
+FOTOSENTEZ: Işık enerjisi ile inorganik maddelerden (CO2 + H2O) organik besin (Glikoz) ve Oksijen üretilmesidir. Klorofili olan canlılar (Bitki, Alg, Siyanobakteri) yapar.
+Denklem: 6CO2 + 6H2O --(Işık/Klorofil)--> C6H12O6 + 6O2
+(Hidrojen kaynağı olarak H2S kullanılırsa O2 değil Kükürt çıkar - Bakterilerde).
+
+Fotosentez Reaksiyonları (Kloroplastta):
+1. Işığa Bağımlı Reaksiyonlar (Granada):
+   - Işık ve Su kullanılır.
+   - Suyun fotolizi gerçekleşir (Su parçalanır -> O2 atmosfere verilir).
+   - ATP ve NADPH üretilir. (Bunlar ışıktan bağımsız evreye aktarılır).
+
+2. Işıktan Bağımsız Reaksiyonlar (Calvin Döngüsü - Stromada):
+   - Işık doğrudan kullanılmaz ama ışıklı evre ürünlerine muhtaçtır (Gece gerçekleşmez!).
+   - CO2 tüketilir (İndirgenir).
+   - ATP ve NADPH harcanır.
+   - Sonuçta PGAL oluşur. PGAL'den glikoz, amino asit, vitamin, yağ asidi gibi tüm organik moleküller sentezlenir.
+
+Fotosentez Hızını Etkileyen Faktörler:
+- Işık Şiddeti ve Rengi (Mor ve Kırmızıda hızlı, Yeşil de en yavaştır - yansıtıldığı için).
+- CO2 miktarı (Artarsa belirli yere kadar artar).
+- Sıcaklık (Enzimler görev aldığı için optimum değer gerekir).","zor",5,"[""https://images.unsplash.com/photo-1518531933037-91b2f5d2294c?w=800&q=80""]","[]","{""shortSummary"": ""Fotosentez evreleri ve hızına etki eden faktörler."", ""tytAytDifferences"": ""AYT konusudur. Işıklı ve ışıktan bağısız evre farkları (nerede olur, ne harcanır, ne üretilir) çok önemlidir. Oksijenin kaynağı SU'dur."", ""confusedConcepts"": [""Fotosentez gece olur mu? (Hayır)"", ""Bitkiler oksijenli solunum yapmaz mı? (Yapar, gece gündüz)"", ""Yeşil ışıkta fotosentez durur mu? (Hayır, yavaşlar)""], ""examProbability"": ""yüksek""}"

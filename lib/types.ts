@@ -20,7 +20,10 @@ export interface Topic {
     title: string;
     category: string; // '9-sinif', '10-sinif', '11-sinif', '12-sinif', 'tyt', 'ayt'
     subCategory?: string;
-    content: string;
+    content: string; // Deprecated: Use contentAdmin or contentAi. Kept for fallback.
+    contentAdmin?: string;
+    contentAi?: string;
+    source?: 'OGM' | 'ADMIN' | 'AI';
     images: string[];
     videos: string[];
     difficulty: 'kolay' | 'orta' | 'zor';
@@ -31,6 +34,7 @@ export interface Topic {
         confusedConcepts: string[];
         examProbability: 'düşük' | 'orta' | 'yüksek';
     };
+    lastAiUpdate?: Date;
     createdAt: Date;
     updatedAt: Date;
 }

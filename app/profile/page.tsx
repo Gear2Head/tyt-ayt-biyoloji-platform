@@ -2,10 +2,11 @@
 
 import { useAuth } from '@/lib/xano/xano-auth-context';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, User, Mail, Crown, Shield, Users as UsersIcon } from 'lucide-react';
+import { ArrowLeft, User, Mail, Crown, Shield, Users as UsersIcon, Calendar, Clock, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 export default function ProfilePage() {
     const { user, signOut, isAdmin, isModerator } = useAuth();
@@ -27,132 +28,140 @@ export default function ProfilePage() {
     const getRoleBadge = () => {
         if (isAdmin) {
             return (
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-semibold">
-                    <Crown className="w-4 h-4" />
+                <Badge variant="default" className="bg-gradient-to-r from-amber-500 to-orange-500 border-0">
+                    <Crown className="w-3 h-3 mr-1" />
                     Admin
-                </div>
+                </Badge>
             );
         }
         if (isModerator) {
             return (
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-semibold">
-                    <Shield className="w-4 h-4" />
+                <Badge variant="default" className="bg-gradient-to-r from-blue-500 to-indigo-500 border-0">
+                    <Shield className="w-3 h-3 mr-1" />
                     Moderatör
-                </div>
+                </Badge>
             );
         }
         return (
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-semibold">
-                <UsersIcon className="w-4 h-4" />
+            <Badge variant="secondary">
+                <UsersIcon className="w-3 h-3 mr-1" />
                 Üye
-            </div>
+            </Badge>
         );
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <Link href="/dashboard">
-                    <Button variant="ghost" className="mb-6">
+        <div className="min-h-screen bg-background pb-12">
+            {/* Header */}
+            <div className="bg-muted/30 border-b pb-12 pt-12">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Link href="/dashboard" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Dashboard'a Dön
-                    </Button>
-                </Link>
+                    </Link>
 
-                <div className="mb-8">
-                    <h1 className="text-4xl font-display font-bold mb-2">
-                        <span className="text-gradient">Profilim</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground">
-                        Hesap bilgilerinizi görüntüleyin
-                    </p>
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <div className="relative">
+                            <div className="w-24 h-24 rounded-full bg-gradient-primary flex items-center justify-center shadow-lg ring-4 ring-background">
+                                <span className="text-3xl font-bold text-white">
+                                    {user.displayName?.charAt(0).toUpperCase()}
+                                </span>
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-background p-1.5 rounded-full shadow-sm border">
+                                <Settings className="w-4 h-4 text-muted-foreground" />
+                            </div>
+                        </div>
+
+                        <div className="text-center md:text-left space-y-2 flex-1">
+                            <div className="flex items-center justify-center md:justify-start gap-3">
+                                <h1 className="text-3xl font-display font-bold">{user.displayName}</h1>
+                                {getRoleBadge()}
+                            </div>
+                            <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
+                                <Mail className="w-4 h-4" />
+                                <span>{user.email}</span>
+                            </div>
+                        </div>
+
+                        <Button variant="outline" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={handleSignOut}>
+                            <LogOut className="w-4 h-4 mr-2" />
+                            Çıkış Yap
+                        </Button>
+                    </div>
                 </div>
+            </div>
 
-                <div className="space-y-6">
-                    {/* Profile Card */}
-                    <Card className="glass border-2 border-primary/20">
-                        <CardHeader>
-                            <CardTitle>Kullanıcı Bilgileri</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="flex items-center gap-4">
-                                <div className="p-4 bg-gradient-primary rounded-full">
-                                    <User className="w-12 h-12 text-white" />
-                                </div>
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-1">
-                                        <h2 className="text-2xl font-display font-bold">{user.displayName}</h2>
-                                        {getRoleBadge()}
-                                    </div>
-                                    <div className="flex items-center gap-2 text-muted-foreground">
-                                        <Mail className="w-4 h-4" />
-                                        <span>{user.email}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="pt-6 border-t border-border">
-                                <dl className="space-y-3">
-                                    <div className="flex justify-between">
-                                        <dt className="text-muted-foreground">Üyelik Durumu</dt>
-                                        <dd className="font-semibold">Aktif</dd>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <dt className="text-muted-foreground">Kayıt Tarihi</dt>
-                                        <dd className="font-semibold">
-                                            {user.createdAt && new Date(user.createdAt).toLocaleDateString('tr-TR')}
-                                        </dd>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <dt className="text-muted-foreground">Son Giriş</dt>
-                                        <dd className="font-semibold">
-                                            {user.lastLoginAt && new Date(user.lastLoginAt).toLocaleDateString('tr-TR')}
-                                        </dd>
-                                    </div>
-                                </dl>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Admin Console Access */}
-                    {isAdmin && (
-                        <Card className="border-2 border-amber-500/30 bg-amber-500/5">
+            <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Main Info */}
+                    <div className="md:col-span-2 space-y-6">
+                        <Card>
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
-                                    <Crown className="w-5 h-5" />
-                                    Admin Konsol Erişimi
-                                </CardTitle>
+                                <CardTitle>Hesap Detayları</CardTitle>
+                                <CardDescription>Üyelik bilgileriniz ve hesap durumunuz.</CardDescription>
                             </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground mb-4">
-                                    Admin konsol koduyla özel yönetim paneline erişebilirsiniz.
-                                    Kodu Dashboard'da sol üstteki profil simgesine tıklayarak girebilirsiniz.
-                                </p>
-                                <div className="p-4 bg-background rounded-lg border border-border">
-                                    <p className="text-xs text-muted-foreground mb-1">Konsol Kodu:</p>
-                                    <p className="text-sm font-mono font-bold">GearAdmin9150</p>
+                            <CardContent className="space-y-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="p-4 rounded-lg bg-muted/50 border space-y-1">
+                                        <div className="text-sm text-muted-foreground flex items-center gap-2">
+                                            <Calendar className="w-4 h-4" />
+                                            Kayıt Tarihi
+                                        </div>
+                                        <div className="font-medium">
+                                            {user.createdAt ? new Date(user.createdAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : '-'}
+                                        </div>
+                                    </div>
+                                    <div className="p-4 rounded-lg bg-muted/50 border space-y-1">
+                                        <div className="text-sm text-muted-foreground flex items-center gap-2">
+                                            <Clock className="w-4 h-4" />
+                                            Son Giriş
+                                        </div>
+                                        <div className="font-medium">
+                                            {user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Şimdi'}
+                                        </div>
+                                    </div>
                                 </div>
                             </CardContent>
                         </Card>
-                    )}
 
-                    {/* Actions */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Hesap İşlemleri</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-3">
-                            <Button
-                                variant="outline"
-                                className="w-full"
-                                onClick={handleSignOut}
-                            >
-                                Çıkış Yap
-                            </Button>
-                        </CardContent>
-                    </Card>
+                        {/* Recent Activity Placeholder - Could be actual data later */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Son Aktiviteler</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-sm text-muted-foreground text-center py-8">
+                                    Henüz kaydedilmiş bir aktivite bulunmuyor.
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Sidebar / Admin Panel Access */}
+                    <div className="space-y-6">
+                        {isAdmin && (
+                            <Card className="border-amber-500/20 bg-amber-500/5 overflow-hidden relative">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none"></div>
+                                <CardHeader>
+                                    <CardTitle className="text-amber-700 dark:text-amber-400 flex items-center gap-2">
+                                        <Shield className="w-5 h-5" />
+                                        Yönetici Paneli
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <p className="text-sm text-muted-foreground">
+                                        Sistem ayarlarına ve özel yönetim araçlarına şifreli erişim.
+                                    </p>
+                                    <div className="bg-background/80 backdrop-blur p-3 rounded border text-center">
+                                        <span className="text-xs text-muted-foreground block mb-1">Erişim Kodu</span>
+                                        <code className="text-sm font-bold text-amber-600 dark:text-amber-400">GearAdmin9150</code>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 }
