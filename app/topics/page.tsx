@@ -26,12 +26,10 @@ function TopicsPageContent() {
     const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
     useEffect(() => {
-        if (!user) {
-            router.push('/login');
-            return;
-        }
         loadTopics();
-        loadFavorites();
+        if (user) {
+            loadFavorites();
+        }
     }, [user]);
 
     useEffect(() => {

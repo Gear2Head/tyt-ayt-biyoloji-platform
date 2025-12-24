@@ -42,13 +42,11 @@ export default function TopicDetailPage() {
     const topicId = params.id as string;
 
     useEffect(() => {
-        if (!user) {
-            router.push('/login');
-            return;
-        }
         loadTopic();
-        checkFavorite();
-        setIsCompleted(user.completedTopics?.includes(topicId) || false);
+        if (user) {
+            checkFavorite();
+            setIsCompleted(user.completedTopics?.includes(topicId) || false);
+        }
     }, [user, topicId]);
 
     const handleToggleComplete = async () => {

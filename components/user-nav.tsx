@@ -19,7 +19,22 @@ export function UserNav() {
     const { user, signOut, isAdmin } = useAuth()
     const router = useRouter()
 
-    if (!user) return null
+    if (!user) {
+        return (
+            <div className="flex items-center gap-2">
+                <Link href="/login">
+                    <Button variant="ghost" size="sm">
+                        Giriş Yap
+                    </Button>
+                </Link>
+                <Link href="/signup">
+                    <Button size="sm">
+                        Kayıt Ol
+                    </Button>
+                </Link>
+            </div>
+        );
+    }
 
     const handleSignOut = async () => {
         await signOut()
