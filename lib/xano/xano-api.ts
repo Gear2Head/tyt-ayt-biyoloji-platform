@@ -420,7 +420,7 @@ function transformCommentFromXano(data: any): Comment {
         id: data.id.toString(),
         topicId: data.topic_id.toString(),
         userId: data.user_id.toString(),
-        userName: data.user_name || data.user?.display_name || 'Anonymous',
+        userName: data.user_name || data.user?.display_name || 'Öğrenci ****',
         text: data.text,
         likes: data.likes || 0,
         isLocked: data.is_locked || false,

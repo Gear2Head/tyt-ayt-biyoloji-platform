@@ -2,15 +2,46 @@
 
 import { useAuth } from '@/lib/xano/xano-auth-context';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, User, Mail, Crown, Shield, Users as UsersIcon, Calendar, Clock, LogOut, Settings } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+    ArrowLeft, User, Mail, Crown, Shield, Users as UsersIcon,
+    Calendar, Clock, LogOut, Settings, Trophy, Target,
+    BookOpen, Award, TrendingUp, Zap, Star
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 
 export default function ProfilePage() {
     const { user, signOut, isAdmin, isModerator } = useAuth();
     const router = useRouter();
+    const [stats, setStats] = useState({
+        level: 1,
+        xp: 0,
+        xpToNext: 100,
+        completedTopics: user?.completedTopics?.length || 0,
+        totalQuestions: 0,
+        streak: 0,
+        accuracy: 0
+    });
+
+    useEffect(() => {
+        // Calculate XP based on completed topics
+        if (user) {
+            const completed = user.completedTopics?.length || 0;
+            const level = Math.floor(completed / 5) + 1;
+            const xp = (completed % 5) * 20;
+            setStats(prev => ({
+                ...prev,
+                level,
+                xp,
+                xpToNext: 100,
+                completedTopics: completed
+            }));
+        }
+    }, [user]);
 
     if (!user) {
         return (
@@ -52,34 +83,48 @@ export default function ProfilePage() {
 
     return (
         <div className="min-h-screen bg-background pb-12">
-            {/* Header */}
-            <div className="bg-muted/30 border-b pb-12 pt-12">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Modern Header with Level Bar */}
+            <div className="bg-gradient-to-br from-primary/10 via-accent/5 to-background border-b pb-12 pt-12">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Link href="/dashboard" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Dashboard'a Dön
                     </Link>
 
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        {/* Profile Avatar with Level */}
                         <div className="relative">
-                            <div className="w-24 h-24 rounded-full bg-gradient-primary flex items-center justify-center shadow-lg ring-4 ring-background">
-                                <span className="text-3xl font-bold text-white">
+                            <div className="w-28 h-28 rounded-full bg-gradient-primary flex items-center justify-center shadow-xl ring-4 ring-background">
+                                <span className="text-4xl font-bold text-white">
                                     {user.displayName?.charAt(0).toUpperCase()}
                                 </span>
                             </div>
-                            <div className="absolute -bottom-2 -right-2 bg-background p-1.5 rounded-full shadow-sm border">
-                                <Settings className="w-4 h-4 text-muted-foreground" />
+                            <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full shadow-lg border-4 border-background font-bold text-sm">
+                                <Star className="w-3 h-3 inline mr-1" />
+                                Lvl {stats.level}
                             </div>
                         </div>
 
-                        <div className="text-center md:text-left space-y-2 flex-1">
-                            <div className="flex items-center justify-center md:justify-start gap-3">
-                                <h1 className="text-3xl font-display font-bold">{user.displayName}</h1>
-                                {getRoleBadge()}
+                        {/* User Info & XP Bar */}
+                        <div className="text-center md:text-left space-y-3 flex-1">
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                                <div>
+                                    <h1 className="text-3xl font-display font-bold mb-2">{user.displayName}</h1>
+                                    <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground mb-2">
+                                        <Mail className="w-4 h-4" />
+                                        <span>{user.email}</span>
+                                    </div>
+                                    {getRoleBadge()}
+                                </div>
                             </div>
-                            <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground">
-                                <Mail className="w-4 h-4" />
-                                <span>{user.email}</span>
+
+                            {/* XP Progress Bar */}
+                            <div className="max-w-md">
+                                <div className="flex justify-between text-sm mb-2">
+                                    <span className="text-muted-foreground">Deneyim Puanı</span>
+                                    <span className="font-semibold">{stats.xp} / {stats.xpToNext} XP</span>
+                                </div>
+                                <Progress value={(stats.xp / stats.xpToNext) * 100} className="h-3" />
                             </div>
                         </div>
 
@@ -91,10 +136,46 @@ export default function ProfilePage() {
                 </div>
             </div>
 
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+            <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Main Info */}
+                    {/* Main Stats - 2 Columns */}
                     <div className="md:col-span-2 space-y-6">
+                        {/* Quick Stats Grid */}
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <Card className="bg-gradient-to-br from-green-500/10 to-emerald-500/5 border-green-500/20">
+                                <CardContent className="pt-6 text-center">
+                                    <BookOpen className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                                    <div className="text-2xl font-bold">{stats.completedTopics}</div>
+                                    <div className="text-xs text-muted-foreground">Tamamlanan Konu</div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border-blue-500/20">
+                                <CardContent className="pt-6 text-center">
+                                    <Target className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                                    <div className="text-2xl font-bold">{stats.totalQuestions}</div>
+                                    <div className="text-xs text-muted-foreground">Çözülen Soru</div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-gradient-to-br from-orange-500/10 to-amber-500/5 border-orange-500/20">
+                                <CardContent className="pt-6 text-center">
+                                    <Zap className="w-8 h-8 mx-auto mb-2 text-orange-600" />
+                                    <div className="text-2xl font-bold">{stats.streak}</div>
+                                    <div className="text-xs text-muted-foreground">Günlük Seri</div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/5 border-purple-500/20">
+                                <CardContent className="pt-6 text-center">
+                                    <TrendingUp className="w-8 h-8 mx-auto mb-2 text-purple-600" />
+                                    <div className="text-2xl font-bold">{stats.accuracy}%</div>
+                                    <div className="text-xs text-muted-foreground">Doğruluk Oranı</div>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        {/* Account Details */}
                         <Card>
                             <CardHeader>
                                 <CardTitle>Hesap Detayları</CardTitle>
@@ -124,21 +205,26 @@ export default function ProfilePage() {
                             </CardContent>
                         </Card>
 
-                        {/* Recent Activity Placeholder - Could be actual data later */}
+                        {/* Achievements Preview */}
                         <Card>
                             <CardHeader>
-                                <CardTitle>Son Aktiviteler</CardTitle>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Trophy className="w-5 h-5 text-amber-500" />
+                                    Başarımlar
+                                </CardTitle>
+                                <CardDescription>Kazandığınız rozetler ve ödüller</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <div className="text-sm text-muted-foreground text-center py-8">
-                                    Henüz kaydedilmiş bir aktivite bulunmuyor.
+                                    🏆 Yakında! Başarım sistemi çok yakında eklenecek.
                                 </div>
                             </CardContent>
                         </Card>
                     </div>
 
-                    {/* Sidebar / Admin Panel Access */}
+                    {/* Sidebar - 1 Column */}
                     <div className="space-y-6">
+                        {/* Admin Panel Access */}
                         {isAdmin && (
                             <Card className="border-amber-500/20 bg-amber-500/5 overflow-hidden relative">
                                 <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none"></div>
@@ -152,13 +238,39 @@ export default function ProfilePage() {
                                     <p className="text-sm text-muted-foreground">
                                         Sistem ayarlarına ve özel yönetim araçlarına şifreli erişim.
                                     </p>
-                                    <div className="bg-background/80 backdrop-blur p-3 rounded border text-center">
-                                        <span className="text-xs text-muted-foreground block mb-1">Erişim Kodu</span>
-                                        <code className="text-sm font-bold text-amber-600 dark:text-amber-400">GearAdmin9150</code>
-                                    </div>
+                                    <Link href="/admin">
+                                        <Button variant="outline" className="w-full">
+                                            Admin Panel'e Git
+                                        </Button>
+                                    </Link>
                                 </CardContent>
                             </Card>
                         )}
+
+                        {/* Quick Actions */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="text-sm">Hızlı Erişim</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2">
+                                <Link href="/topics">
+                                    <Button variant="ghost" className="w-full justify-start">
+                                        <BookOpen className="w-4 h-4 mr-2" />
+                                        Konular
+                                    </Button>
+                                </Link>
+                                <Link href="/dashboard">
+                                    <Button variant="ghost" className="w-full justify-start">
+                                        <Target className="w-4 h-4 mr-2" />
+                                        Dashboard
+                                    </Button>
+                                </Link>
+                                <Button variant="ghost" className="w-full justify-start" disabled>
+                                    <Award className="w-4 h-4 mr-2" />
+                                    Sorular (Yakında)
+                                </Button>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </main>
