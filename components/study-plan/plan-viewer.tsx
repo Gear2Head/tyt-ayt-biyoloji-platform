@@ -53,7 +53,7 @@ export function PlanViewer({ plan }: PlanViewerProps) {
                     </div>
 
                     {/* Weak Topics */}
-                    {plan.weakTopics && plan.weakTopics.length > 0 && (
+                    {Array.isArray(plan.weakTopics) && plan.weakTopics.length > 0 && (
                         <div className="mt-4 p-3 rounded-lg bg-warning/10 border border-warning/20">
                             <p className="text-sm font-medium mb-2 flex items-center gap-2">
                                 <BookOpen className="w-4 h-4 text-warning" />
@@ -75,7 +75,7 @@ export function PlanViewer({ plan }: PlanViewerProps) {
             </Card>
 
             {/* Daily Tasks */}
-            {plan.plan && plan.plan.dailyTasks && plan.plan.dailyTasks.length > 0 && (
+            {plan.plan && Array.isArray(plan.plan.dailyTasks) && plan.plan.dailyTasks.length > 0 && (
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export function PlanViewer({ plan }: PlanViewerProps) {
                                         </span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {task.topics.map((topicId, i) => (
+                                        {Array.isArray(task.topics) && task.topics.map((topicId, i) => (
                                             <span
                                                 key={i}
                                                 className="px-2 py-1 rounded text-xs bg-primary/10 text-primary"
@@ -115,7 +115,7 @@ export function PlanViewer({ plan }: PlanViewerProps) {
             )}
 
             {/* Weekly Goals */}
-            {plan.plan && plan.plan.weeklyGoals && plan.plan.weeklyGoals.length > 0 && (
+            {plan.plan && Array.isArray(plan.plan.weeklyGoals) && plan.plan.weeklyGoals.length > 0 && (
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
