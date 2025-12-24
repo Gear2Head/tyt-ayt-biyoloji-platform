@@ -12,16 +12,24 @@ class XanoClient {
     private tokenKey = 'xano_auth_token';
 
     constructor() {
+        // Ensure baseURL always ends with a trailing slash for consistent joining
+        const normalizedBaseUrl = XANO_BASE_URL.endsWith('/')
+            ? XANO_BASE_URL
+            : `${XANO_BASE_URL}/`;
+
         this.client = axios.create({
-            baseURL: XANO_BASE_URL,
+            baseURL: normalizedBaseUrl,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        // Request interceptor - add auth token to requests
+        // Request interceptor - log requests for diagnostics
         this.client.interceptors.request.use(
             (config) => {
+                const fullUrl = `${config.baseURL || ''}${config.url || ''}`;
+                console.log(`[XanoClient] Request: ${config.method?.toUpperCase()} ${fullUrl}`);
+
                 const token = this.getToken();
                 if (token && config.headers) {
                     config.headers.Authorization = `Bearer ${token}`;
@@ -33,8 +41,12 @@ class XanoClient {
 
         // Response interceptor - handle token refresh and errors
         this.client.interceptors.response.use(
-            (response) => response,
+            (response) => {
+                console.log(`[XanoClient] Response: ${response.status} ${response.config.url}`);
+                return response;
+            },
             async (error) => {
+                console.error(`[XanoClient] Error: ${error.response?.status || 'Network'} ${error.config?.url}`, error.response?.data);
                 const originalRequest = error.config;
 
                 // If 401 and not already retried, try to refresh token

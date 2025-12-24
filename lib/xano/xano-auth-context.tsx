@@ -92,7 +92,16 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
             }
         } catch (error: any) {
             console.error('Sign in error:', error);
-            throw new Error(error.response?.data?.message || 'Giriş yapılamadı');
+            const status = error.response?.status;
+            let message = 'Giriş yapılamadı';
+
+            if (status === 404) {
+                message = 'Giriş yapılamadı (Sunucu 404 döndürdü - Lütfen Xano API ayarlarınızı ve Base URL\'inizi kontrol edin)';
+            } else if (error.response?.data?.message) {
+                message = error.response.data.message;
+            }
+
+            throw new Error(message);
         }
     };
 
@@ -116,7 +125,16 @@ export function XanoAuthProvider({ children }: { children: React.ReactNode }) {
             }
         } catch (error: any) {
             console.error('Sign up error:', error);
-            throw new Error(error.response?.data?.message || 'Kayıt oluşturulamadı');
+            const status = error.response?.status;
+            let message = 'Kayıt oluşturulamadı';
+
+            if (status === 404) {
+                message = 'Kayıt oluşturulamadı (Sunucu 404 döndürdü - Lütfen Xano API ayarlarınızı ve Base URL\'inizi kontrol edin)';
+            } else if (error.response?.data?.message) {
+                message = error.response.data.message;
+            }
+
+            throw new Error(message);
         }
     };
 
