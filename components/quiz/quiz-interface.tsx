@@ -133,7 +133,7 @@ export function QuizInterface({ questions, onComplete }: QuizInterfaceProps) {
                         })}
                     </div>
 
-                    <Button onClick={() => window.location.reload()} className="w-full">
+                    <Button onClick={() => typeof window !== 'undefined' && window.location.reload()} className="w-full">
                         Yeni Quiz Başlat
                     </Button>
                 </CardContent>

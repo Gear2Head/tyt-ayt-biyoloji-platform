@@ -31,8 +31,14 @@ export default function DashboardPage() {
     }, [user]);
 
     const loadStats = async () => {
-        const data = await progressApi.getStudyStats();
-        setStats(data);
+        try {
+            const data = await progressApi.getStudyStats();
+            if (data) {
+                setStats(data);
+            }
+        } catch (error) {
+            console.error('Failed to load stats:', error);
+        }
     };
 
     const handleSearch = (e: React.FormEvent) => {
